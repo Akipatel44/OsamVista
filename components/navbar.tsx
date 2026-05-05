@@ -19,6 +19,7 @@ export function Navbar() {
 
   const navItems = [
     { label: 'Home', href: '/' },
+    { label: 'Gallery', href: '/gallery' },
     { label: 'Temples', href: '/temples' },
     { label: 'Attractions', href: '/attractions' },
     { label: 'Festival', href: '/festival' },

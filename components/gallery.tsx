@@ -3,28 +3,40 @@
 import { motion } from 'framer-motion'
 import { useState } from 'react'
 import Image from 'next/image'
-import { X } from 'lucide-react'
+import { Download, X } from 'lucide-react'
 
-const galleryImages = [
-  { id: 1, src: '/images/above_temple.jpg', category: 'Temples' },
-  { id: 2, src: '/images/slow_waterfalls.jpg', category: 'Nature' },
-  { id: 3, src: '/images/above_hill_straight_way.jpg', category: 'Architecture' },
-  { id: 4, src: '/images/from_above_view.jpg', category: 'Landscape' },
-  { id: 5, src: '/images/sunset.jpg', category: 'Festivals' },
-  { id: 6, src: '/images/greenary_ground.jpg', category: 'Nature' },
-  { id: 7, src: '/images/hill_stones_greenery.jpg', category: 'Culture' },
-  { id: 8, src: '/images/hill_stones_greenery2.jpg', category: 'Temples' },
+type GalleryImage = {
+  id: number
+  src: string
+  category: string
+  title: string
+}
+
+const galleryImages: GalleryImage[] = [
+  { id: 1, src: '/images/above_temple.jpg', category: 'Temples', title: 'Temple View' },
+  { id: 2, src: '/images/slow_waterfalls.jpg', category: 'Nature', title: 'Waterfall Trail' },
+  { id: 3, src: '/images/above_hill_straight_way.jpg', category: 'Architecture', title: 'Hill Path' },
+  { id: 4, src: '/images/from_above_view.jpg', category: 'Landscape', title: 'Aerial View' },
+  { id: 5, src: '/images/sunset.jpg', category: 'Festivals', title: 'Festival Sunset' },
+  { id: 6, src: '/images/greenary_ground.jpg', category: 'Nature', title: 'Green Valley' },
+  { id: 7, src: '/images/hill_stones_greenery.jpg', category: 'Culture', title: 'Stone Steps' },
+  { id: 8, src: '/images/hill_stones_greenery2.jpg', category: 'Temples', title: 'Sacred Stones' },
 ]
 
 const categories = ['All', 'Temples', 'Nature', 'Architecture', 'Landscape', 'Festivals', 'Culture']
 
 export function Gallery() {
   const [selectedCategory, setSelectedCategory] = useState('All')
-  const [selectedImage, setSelectedImage] = useState<typeof galleryImages[0] | null>(null)
+  const [selectedImage, setSelectedImage] = useState<GalleryImage | null>(null)
 
   const filteredImages = selectedCategory === 'All'
     ? galleryImages
     : galleryImages.filter(img => img.category === selectedCategory)
+
+  const getDownloadName = (image: GalleryImage) => {
+    const slug = image.title.toLowerCase().replace(/[^a-z0-9]+/g, '-')
+    return `osam-hills-${slug}.jpg`
+  }
 
   return (
     <section id="gallery" className="relative py-20 sm:py-28 px-4 sm:px-6 lg:px-8 bg-background overflow-hidden">
@@ -108,9 +120,20 @@ export function Gallery() {
                 whileHover={{ opacity: 1 }}
               >
                 <div>
-                  <p className="text-white font-semibold">{image.category}</p>
-                  <p className="text-muted text-sm">Click to view</p>
+                  <p className="text-white font-semibold">{image.title}</p>
+                  <p className="text-muted text-sm">Click to preview</p>
                 </div>
+
+                <a
+                  href={image.src}
+                  download={getDownloadName(image)}
+                  onClick={(event) => event.stopPropagation()}
+                  className="inline-flex items-center gap-2 rounded-full bg-accent px-3 py-2 text-xs font-semibold text-background hover:bg-accent/90 transition-colors"
+                  aria-label={`Download ${image.title}`}
+                >
+                  <Download size={14} />
+                  Download
+                </a>
               </motion.div>
 
               {/* Border on Hover */}
@@ -156,7 +179,8 @@ export function Gallery() {
 
             {/* Image Info */}
             <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-background to-transparent">
-              <p className="text-accent font-semibold">{selectedImage.category}</p>
+              <p className="text-accent font-semibold">{selectedImage.title}</p>
+              <p className="text-muted text-sm">{selectedImage.category}</p>
             </div>
           </motion.div>
         </motion.div>
