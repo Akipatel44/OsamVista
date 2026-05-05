@@ -94,7 +94,7 @@ export default function FestivalPage() {
             transition={{ duration: 0.8 }}
           >
             <Image
-              src="https://images.unsplash.com/photo-1504681869696-d977211a0d3f?w=1200&h=800&fit=crop"
+              src="/images/sunset.jpg"
               alt="Lok-Mela Festival celebration with pilgrims"
               fill
               className="object-cover"

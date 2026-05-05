@@ -6,14 +6,14 @@ import Image from 'next/image'
 import { X } from 'lucide-react'
 
 const galleryImages = [
-  { id: 1, src: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&h=400&fit=crop', category: 'Temples' },
-  { id: 2, src: 'https://images.unsplash.com/photo-1469022563149-aa64dbd37dae?w=600&h=400&fit=crop', category: 'Nature' },
-  { id: 3, src: 'https://images.unsplash.com/photo-1518156677180-95a2893f3e9f?w=600&h=400&fit=crop', category: 'Architecture' },
-  { id: 4, src: 'https://images.unsplash.com/photo-1505142468610-359e7d316be0?w=600&h=400&fit=crop', category: 'Landscape' },
-  { id: 5, src: 'https://images.unsplash.com/photo-1464207687429-7505649dae38?w=600&h=400&fit=crop', category: 'Festivals' },
-  { id: 6, src: 'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=600&h=400&fit=crop', category: 'Nature' },
-  { id: 7, src: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&h=400&fit=crop', category: 'Culture' },
-  { id: 8, src: 'https://images.unsplash.com/photo-1518156677180-95a2893f3e9f?w=600&h=400&fit=crop', category: 'Temples' },
+  { id: 1, src: '/images/above_temple.jpg', category: 'Temples' },
+  { id: 2, src: '/images/slow_waterfalls.jpg', category: 'Nature' },
+  { id: 3, src: '/images/above_hill_straight_way.jpg', category: 'Architecture' },
+  { id: 4, src: '/images/from_above_view.jpg', category: 'Landscape' },
+  { id: 5, src: '/images/sunset.jpg', category: 'Festivals' },
+  { id: 6, src: '/images/greenary_ground.jpg', category: 'Nature' },
+  { id: 7, src: '/images/hill_stones_greenery.jpg', category: 'Culture' },
+  { id: 8, src: '/images/hill_stones_greenery2.jpg', category: 'Temples' },
 ]
 
 const categories = ['All', 'Temples', 'Nature', 'Architecture', 'Landscape', 'Festivals', 'Culture']

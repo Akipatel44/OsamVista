@@ -8,7 +8,7 @@ import Image from 'next/image'
 const temples = [
   {
     name: 'Tapakeshwar Mahadeo Temple',
-    image: 'https://images.unsplash.com/photo-1589519160732-57fc498494f8?w=800&h=800&fit=crop',
+    image: '/images/above_temple.jpg',
     deity: 'Lord Shiva',
     age: '104 Years Old',
     description: 'One of the most revered temples on Osam Hill, Tapakeshwar Mahadeo is dedicated to Lord Shiva and stands as a testament to centuries of devotion. Located at a scenic spot on the hilltop, this ancient temple attracts thousands of pilgrims annually.',
@@ -16,7 +16,7 @@ const temples = [
   },
   {
     name: 'Bhimnath Mahadeo Temple',
-    image: 'https://images.unsplash.com/photo-1577720643272-265f434f3c64?w=800&h=800&fit=crop',
+    image: '/images/hill_stones_greenery2.jpg',
     deity: 'Lord Shiva',
     age: 'Historic',
     description: 'Situated near the legendary Bhimkund (water pool believed to be created by Bhima), this temple holds deep mythological significance. It is believed that Bhima, one of the Pandavas, stayed near this sacred spring during the exile period.',
@@ -24,7 +24,7 @@ const temples = [
   },
   {
     name: 'Matrimataji Temple',
-    image: 'https://images.unsplash.com/photo-1454496522488-7a8e488e8606?w=800&h=800&fit=crop',
+    image: '/images/sunset.jpg',
     deity: 'Amba Devi',
     age: 'Very Old',
     description: 'The most prominent temple on Osam Hill, Matrimataji is dedicated to Amba Devi (Goddess Durga). This beautiful temple is the center of the annual Lok-Mela festival held on Shravan Amavashya, attracting huge crowds from across Gujarat and neighboring states.',
@@ -32,7 +32,7 @@ const temples = [
   },
   {
     name: 'Jain Temple Complex',
-    image: 'https://images.unsplash.com/photo-1511884642898-4c92249e20b6?w=800&h=800&fit=crop',
+    image: '/images/above_hill_straight_way.jpg',
     deity: 'Tirthankaras',
     age: 'Historic',
     description: 'The hill hosts sacred Jain temples dedicated to Lord Shantinath and Lord Rushabhdeo. The Siddhchakra Jain Temple is notable for its unique circular design representing sacred geometry, making it a spiritual hub for Jain pilgrims.',

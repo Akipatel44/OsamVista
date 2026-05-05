@@ -10,7 +10,7 @@ const attractions = [
   {
     title: 'Osam Hill Trek',
     description: 'Experience the thrilling trek up Osam Hill with winding stone steps and scenic viewpoints. The trail offers breathtaking panoramic views of the surrounding landscape and a sense of accomplishment at the hilltop.',
-    image: 'https://images.unsplash.com/photo-1551632786-9a29f51c67ff?w=800&h=600&fit=crop',
+    image: '/images/above_hill_straight_way.jpg',
     icon: Compass,
     duration: '1-2 hours',
     difficulty: 'Moderate',
@@ -18,7 +18,7 @@ const attractions = [
   {
     title: 'Matrimataji Lake',
     description: 'A serene natural water body at the foothills of Osam Hill. The lake is surrounded by lush greenery and is a perfect spot for peaceful contemplation and photography, especially during the monsoon season.',
-    image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop',
+    image: '/images/slow_waterfalls.jpg',
     icon: Droplet,
     duration: 'Leisure Activity',
     difficulty: 'Easy',
@@ -26,7 +26,7 @@ const attractions = [
   {
     title: 'Bhim Ni Thali',
     description: 'A legendary natural rock formation believed to be a plate (thali) created by Bhima during the Mahabharata exile. The site offers stunning views and connects visitors to ancient mythology.',
-    image: 'https://images.unsplash.com/photo-1464207687429-7505649dae38?w=800&h=600&fit=crop',
+    image: '/images/hill_stones_greenery.jpg',
     icon: Camera,
     duration: '30 minutes',
     difficulty: 'Easy',
@@ -34,7 +34,7 @@ const attractions = [
   {
     title: 'Osam Waterfall',
     description: 'During monsoon season, a beautiful waterfall appears on Mount Osam, creating a refreshing and picturesque spot. The cascading water through natural rock formations is a sight to behold.',
-    image: 'https://images.unsplash.com/photo-1432405972618-c60b0457b852?w=800&h=600&fit=crop',
+    image: '/images/after_rain.jpg',
     icon: Droplet,
     duration: '45 minutes',
     difficulty: 'Moderate',
@@ -42,7 +42,7 @@ const attractions = [
   {
     title: 'Patanvav Village Experience',
     description: 'Explore the well-planned village of Patanvav with its traditional architecture and warm community. Experience authentic Gujarati culture and hospitality in this peaceful rural setting.',
-    image: 'https://images.unsplash.com/photo-1488747807830-63789f68bb65?w=800&h=600&fit=crop',
+    image: '/images/greenary_ground.jpg',
     icon: Map,
     duration: 'Flexible',
     difficulty: 'Easy',
@@ -50,7 +50,7 @@ const attractions = [
   {
     title: 'Hilltop Panoramic Views',
     description: 'Reach the summit of Osam Hill to witness breathtaking 360-degree views of the surrounding hills, valleys, and the holy Aum-shaped landscape. Perfect for sunrise or sunset photography.',
-    image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop',
+    image: '/images/from_above_view.jpg',
     icon: Camera,
     duration: 'Best at dawn/dusk',
     difficulty: 'Moderate',

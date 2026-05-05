@@ -16,7 +16,7 @@ export function Hero() {
         viewport={{ once: false }}
       >
         <Image
-          src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1400&h=900&fit=crop"
+          src="/images/from_above_view.jpg"
           alt="Mountain landscape with morning mist"
           fill
           className="object-cover"

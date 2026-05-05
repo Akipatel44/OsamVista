@@ -3,7 +3,22 @@
 import { Navbar } from '@/components/navbar'
 import { Footer } from '@/components/footer'
 import { motion } from 'framer-motion'
-import { Car, Clock, MapPin, AlertCircle, Cloud, Utensils } from 'lucide-react'
+import {
+  Car,
+  Clock,
+  MapPin,
+  AlertCircle,
+  Cloud,
+  Utensils,
+  Footprints,
+  Droplets,
+  Sun,
+  Backpack,
+  Smartphone,
+  Map,
+  HeartPulse,
+  Camera,
+} from 'lucide-react'
 
 export default function VisitorGuidePage() {
   const guides = [
@@ -50,14 +65,14 @@ export default function VisitorGuidePage() {
   ]
 
   const essentials = [
-    { icon: '🥾', text: 'Comfortable trekking shoes' },
-    { icon: '💧', text: 'Sufficient water bottles' },
-    { icon: '🧢', text: 'Hat or cap for sun protection' },
-    { icon: '🎒', text: 'Backpack with essentials' },
-    { icon: '📱', text: 'Charged mobile phone' },
-    { icon: '🗺️', text: 'Map or GPS navigation' },
-    { icon: '🏥', text: 'Basic first aid kit' },
-    { icon: '📸', text: 'Camera for memories' },
+    { icon: Footprints, text: 'Comfortable trekking shoes' },
+    { icon: Droplets, text: 'Sufficient water bottles' },
+    { icon: Sun, text: 'Hat or cap for sun protection' },
+    { icon: Backpack, text: 'Backpack with essentials' },
+    { icon: Smartphone, text: 'Charged mobile phone' },
+    { icon: Map, text: 'Map or GPS navigation' },
+    { icon: HeartPulse, text: 'Basic first aid kit' },
+    { icon: Camera, text: 'Camera for memories' },
   ]
 
   return (
@@ -143,19 +158,25 @@ export default function VisitorGuidePage() {
           </motion.div>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            {essentials.map((item, index) => (
-              <motion.div
-                key={item.text}
-                className="rounded-xl border border-border/20 bg-background/40 p-4 text-center hover:border-accent/40 transition-all duration-300"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.05 }}
-              >
-                <p className="text-3xl mb-2">{item.icon}</p>
-                <p className="text-sm font-medium text-foreground">{item.text}</p>
-              </motion.div>
-            ))}
+            {essentials.map((item, index) => {
+              const EssentialIcon = item.icon
+
+              return (
+                <motion.div
+                  key={item.text}
+                  className="rounded-xl border border-border/20 bg-background/40 p-4 text-center hover:border-accent/40 transition-all duration-300"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.05 }}
+                >
+                  <div className="mb-2 flex justify-center">
+                    <EssentialIcon size={30} className="text-accent" aria-hidden="true" />
+                  </div>
+                  <p className="text-sm font-medium text-foreground">{item.text}</p>
+                </motion.div>
+              )
+            })}
           </div>
         </div>
       </section>

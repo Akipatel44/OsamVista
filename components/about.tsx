@@ -81,7 +81,7 @@ export function About() {
           >
             <div className="relative h-96 rounded-2xl overflow-hidden border border-border/20">
               <Image
-                src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=800&h=800&fit=crop"
+                src="/images/above_temple.jpg"
                 alt="Ancient Indian temple architecture"
                 fill
                 className="object-cover"
