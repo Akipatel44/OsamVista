@@ -48,7 +48,7 @@ const AttractionCard = ({ attraction, index }: { attraction: typeof attractions[
     <motion.div
       initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
+      viewport={{ once: false }}
       transition={{ duration: 0.6, delay: index * 0.15 }}
       whileHover={{ y: -8, transition: { duration: 0.3 } }}
       className="group bg-card border border-border/20 rounded-xl overflow-hidden hover:border-accent/40 transition-all duration-300"
@@ -128,7 +128,7 @@ export function Attractions() {
           className="text-center mb-16"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: false }}
           transition={{ duration: 0.6 }}
         >
           <span className="inline-block px-4 py-2 rounded-full bg-accent/10 border border-accent/30 text-accent text-sm font-medium mb-4">

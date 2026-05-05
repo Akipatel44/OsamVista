@@ -96,7 +96,7 @@ export default function AttractionsPage() {
                   className="group relative h-full rounded-2xl border border-border/20 overflow-hidden bg-card/30 hover:border-accent/40 transition-all duration-300"
                   initial={{ opacity: 0, y: 40 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
+                  viewport={{ once: false }}
                   transition={{ delay: index * 0.1 }}
                   whileHover={{ y: -8 }}
                 >
@@ -152,7 +152,7 @@ export default function AttractionsPage() {
             className="text-center"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: false }}
           >
             <p className="text-4xl font-bold text-accent mb-2">110 km</p>
             <p className="text-muted">From Rajkot City</p>
@@ -161,7 +161,7 @@ export default function AttractionsPage() {
             className="text-center"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: false }}
             transition={{ delay: 0.1 }}
           >
             <p className="text-4xl font-bold text-accent mb-2">22 km</p>
@@ -171,7 +171,7 @@ export default function AttractionsPage() {
             className="text-center"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: false }}
             transition={{ delay: 0.2 }}
           >
             <p className="text-4xl font-bold text-accent mb-2">Unique</p>

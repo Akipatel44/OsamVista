@@ -111,7 +111,7 @@ export default function VisitorGuidePage() {
                 key={guide.title}
                 initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+                viewport={{ once: false }}
                 transition={{ duration: 0.8 }}
               >
                 <div className="flex items-center gap-4 mb-8">
@@ -128,7 +128,7 @@ export default function VisitorGuidePage() {
                       className="rounded-2xl border border-border/20 bg-card/30 p-6 hover:border-accent/40 transition-all duration-300"
                       initial={{ opacity: 0, y: 20 }}
                       whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
+                      viewport={{ once: false }}
                       transition={{ delay: itemIndex * 0.1 }}
                     >
                       <h3 className="text-lg font-semibold text-accent mb-2">{item.label}</h3>
@@ -149,7 +149,7 @@ export default function VisitorGuidePage() {
             className="text-center mb-12"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: false }}
           >
             <h2 className="text-3xl font-bold text-white mb-4">Packing Essentials</h2>
             <p className="text-muted max-w-2xl mx-auto">
@@ -167,7 +167,7 @@ export default function VisitorGuidePage() {
                   className="rounded-xl border border-border/20 bg-background/40 p-4 text-center hover:border-accent/40 transition-all duration-300"
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
+                  viewport={{ once: false }}
                   transition={{ delay: index * 0.05 }}
                 >
                   <div className="mb-2 flex justify-center">
@@ -188,7 +188,7 @@ export default function VisitorGuidePage() {
             className="rounded-2xl border border-border/20 bg-card/50 p-12"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: false }}
           >
             <h2 className="text-3xl font-bold text-white mb-8">Quick Facts</h2>
             
@@ -237,7 +237,7 @@ export default function VisitorGuidePage() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: false }}
           >
             <h2 className="text-3xl font-bold text-white mb-4">Need Help Planning Your Visit?</h2>
             <p className="text-muted text-lg mb-8">

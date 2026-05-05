@@ -45,8 +45,8 @@ export function Experiences() {
         <motion.div
           className="text-center mb-16"
           initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: false }}
           transition={{ duration: 0.6 }}
         >
           <span className="inline-block px-4 py-2 rounded-full bg-accent/10 border border-accent/30 text-accent text-sm font-medium mb-4">
@@ -70,7 +70,7 @@ export function Experiences() {
                 className="group relative p-6 rounded-xl border border-border/20 bg-card/50 backdrop-blur-sm hover:border-accent/40 transition-all duration-300"
                 initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+                viewport={{ once: false }}
                 transition={{ duration: 0.6, delay: index * 0.12 }}
                 whileHover={{ y: -8 }}
               >
@@ -98,7 +98,7 @@ export function Experiences() {
                       className="flex items-center gap-2 text-sm text-muted"
                       initial={{ opacity: 0, x: -10 }}
                       whileInView={{ opacity: 1, x: 0 }}
-                      viewport={{ once: true }}
+                      viewport={{ once: false }}
                       transition={{ delay: index * 0.12 + 0.2 }}
                     >
                       <div className="w-1.5 h-1.5 rounded-full bg-accent" />

@@ -90,7 +90,7 @@ export default function FestivalPage() {
             className="relative h-96 rounded-2xl overflow-hidden border border-border/20"
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: false }}
             transition={{ duration: 0.8 }}
           >
             <Image
@@ -116,7 +116,7 @@ export default function FestivalPage() {
                   className="rounded-2xl border border-border/20 bg-card/30 p-6 hover:border-accent/40 transition-all duration-300"
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
+                  viewport={{ once: false }}
                   transition={{ delay: index * 0.1 }}
                 >
                   <div className="w-12 h-12 rounded-lg bg-accent/20 border border-accent/40 flex items-center justify-center mb-4">
@@ -138,7 +138,7 @@ export default function FestivalPage() {
             className="text-center mb-16"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: false }}
           >
             <h2 className="text-4xl font-bold text-white mb-4">Festival Activities</h2>
             <p className="text-muted text-lg max-w-2xl mx-auto">
@@ -153,7 +153,7 @@ export default function FestivalPage() {
                 className="rounded-2xl border border-border/20 bg-background/40 p-8 hover:border-accent/40 transition-all duration-300 group hover:shadow-lg hover:shadow-accent/10"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+                viewport={{ once: false }}
                 transition={{ delay: index * 0.1 }}
               >
                 <div className="w-12 h-12 rounded-full bg-accent/20 mb-4 group-hover:bg-accent/30 transition-colors" />
@@ -174,7 +174,7 @@ export default function FestivalPage() {
             className="rounded-2xl border border-border/20 bg-card/50 p-12"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: false }}
           >
             <h2 className="text-3xl font-bold text-white mb-6">About Lok-Mela</h2>
             
@@ -210,7 +210,7 @@ export default function FestivalPage() {
             className="rounded-2xl border border-border/20 bg-background/40 p-12"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: false }}
           >
             <h2 className="text-3xl font-bold text-white mb-6">Visitor Tips</h2>
             
@@ -229,7 +229,7 @@ export default function FestivalPage() {
                   className="flex items-start gap-4"
                   initial={{ opacity: 0, x: -20 }}
                   whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
+                  viewport={{ once: false }}
                   transition={{ delay: index * 0.05 }}
                 >
                   <div className="w-6 h-6 rounded-full bg-accent/20 border border-accent/40 flex items-center justify-center flex-shrink-0 mt-1">

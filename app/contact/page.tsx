@@ -90,7 +90,7 @@ export default function ContactPage() {
                   className="rounded-2xl border border-border/20 bg-card/30 p-6 text-center hover:border-accent/40 transition-all duration-300"
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
+                  viewport={{ once: false }}
                   transition={{ delay: index * 0.1 }}
                 >
                   <div className="w-12 h-12 rounded-lg bg-accent/20 border border-accent/40 flex items-center justify-center mx-auto mb-4">
@@ -116,7 +116,7 @@ export default function ContactPage() {
             className="rounded-2xl border border-border/20 bg-card/50 p-12"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: false }}
           >
             <h2 className="text-3xl font-bold text-white mb-8">Send us a Message</h2>
 
@@ -240,7 +240,7 @@ export default function ContactPage() {
             className="rounded-2xl border border-border/20 overflow-hidden h-96"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
+            viewport={{ once: false }}
           >
             <iframe
               width="100%"
@@ -262,7 +262,7 @@ export default function ContactPage() {
             className="text-center mb-12"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: false }}
           >
             <h2 className="text-3xl font-bold text-white mb-4">Frequently Asked Questions</h2>
             <p className="text-muted">Have other questions? Check our FAQ section or contact us directly</p>
@@ -280,7 +280,7 @@ export default function ContactPage() {
                 className="rounded-lg border border-border/20 bg-background/40 p-4 hover:border-accent/40 transition-colors"
                 initial={{ opacity: 0, y: 10 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+                viewport={{ once: false }}
                 transition={{ delay: index * 0.1 }}
               >
                 <p className="font-semibold text-accent mb-2">{item.q}</p>

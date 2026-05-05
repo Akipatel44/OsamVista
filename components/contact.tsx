@@ -51,7 +51,7 @@ export function Contact() {
           className="text-center mb-16"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: false }}
           transition={{ duration: 0.6 }}
         >
           <span className="inline-block px-4 py-2 rounded-full bg-accent/10 border border-accent/30 text-accent text-sm font-medium mb-4">
@@ -66,9 +66,7 @@ export function Contact() {
         </motion.div>
 
         <div className="grid lg:grid-cols-3 gap-8">
-          {/* Contact Info Cards */}
-          <div className="space-y-6">
-            {[
+          {[
               {
                 icon: Phone,
                 label: 'Phone',
@@ -95,7 +93,7 @@ export function Contact() {
                   className={`p-6 rounded-xl border border-border/20 bg-gradient-to-br ${item.color} backdrop-blur-sm`}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
+                  viewport={{ once: false }}
                   transition={{ duration: 0.6, delay: index * 0.1 }}
                   whileHover={{ y: -4 }}
                 >
@@ -117,8 +115,8 @@ export function Contact() {
           <motion.div
             className="lg:col-span-2 p-8 rounded-xl border border-border/20 bg-card/50 backdrop-blur-sm"
             initial={{ opacity: 0, x: 40 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: false }}
             transition={{ duration: 0.6 }}
           >
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">

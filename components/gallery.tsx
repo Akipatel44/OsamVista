@@ -123,7 +123,7 @@ export function Gallery() {
           className="text-center mb-12"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: false }}
           transition={{ duration: 0.6 }}
         >
           <span className="inline-block px-4 py-2 rounded-full bg-accent/10 border border-accent/30 text-accent text-sm font-medium mb-4">
@@ -142,7 +142,7 @@ export function Gallery() {
           className="flex flex-wrap justify-center gap-3 mb-12"
           initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: false }}
           transition={{ delay: 0.2 }}
         >
           {categories.map((category) => (

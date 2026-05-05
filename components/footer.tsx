@@ -52,7 +52,7 @@ export function Footer() {
               className="md:col-span-1"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: false }}
               transition={{ duration: 0.6 }}
             >
               <div className="mb-4 inline-flex rounded-xl border border-accent/30 bg-background/80 p-2.5 shadow-lg">
@@ -75,7 +75,7 @@ export function Footer() {
                 key={section.title}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+                viewport={{ once: false }}
                 transition={{ duration: 0.6, delay: (idx + 1) * 0.1 }}
               >
                 <h4 className="text-white font-semibold mb-4">{section.title}</h4>
@@ -100,7 +100,7 @@ export function Footer() {
             className="grid md:grid-cols-3 gap-8 pb-12 border-b border-border/20"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
+            viewport={{ once: false }}
             transition={{ duration: 0.6, delay: 0.4 }}
           >
             <div className="flex items-center gap-4">
@@ -145,7 +145,7 @@ export function Footer() {
               className="text-muted text-sm"
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
+              viewport={{ once: false }}
               transition={{ delay: 0.5 }}
             >
               © {currentYear} Osam Hills. All rights reserved.
@@ -156,7 +156,7 @@ export function Footer() {
               className="flex items-center gap-4"
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
+              viewport={{ once: false }}
               transition={{ delay: 0.6 }}
             >
               {socialLinks.map((social) => {
@@ -180,7 +180,7 @@ export function Footer() {
               className="flex gap-4 text-sm"
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
+              viewport={{ once: false }}
               transition={{ delay: 0.7 }}
             >
               <a href="#" className="text-muted hover:text-accent transition-colors">

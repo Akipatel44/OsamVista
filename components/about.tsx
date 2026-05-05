@@ -22,7 +22,7 @@ export function About() {
           <motion.div
             initial={{ opacity: 0, x: -40 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: false }}
             transition={{ duration: 0.8 }}
           >
             <span className="inline-block px-4 py-2 rounded-full bg-accent/10 border border-accent/30 text-accent text-sm font-medium mb-4">
@@ -52,7 +52,7 @@ export function About() {
                   className="flex items-center gap-3"
                   initial={{ opacity: 0, x: -20 }}
                   whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
+                  viewport={{ once: false }}
                   transition={{ delay: index * 0.1 }}
                 >
                   <CheckCircle size={20} className="text-accent flex-shrink-0" />
@@ -76,7 +76,7 @@ export function About() {
             className="relative"
             initial={{ opacity: 0, x: 40 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: false }}
             transition={{ duration: 0.8 }}
           >
             <div className="relative h-96 rounded-2xl overflow-hidden border border-border/20">
@@ -94,7 +94,7 @@ export function About() {
               className="absolute -bottom-8 -right-8 p-6 bg-card border border-border/20 rounded-xl backdrop-blur-sm"
               initial={{ opacity: 0, scale: 0.8 }}
               whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
+              viewport={{ once: false }}
               transition={{ delay: 0.4 }}
             >
               <div className="text-center">

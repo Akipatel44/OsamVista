@@ -76,7 +76,7 @@ export default function TemplesPage() {
               className="grid lg:grid-cols-2 gap-12 items-center"
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: false }}
               transition={{ duration: 0.8 }}
             >
               {/* Image */}
@@ -98,7 +98,7 @@ export default function TemplesPage() {
                   className="inline-block px-4 py-2 rounded-full bg-accent/10 border border-accent/30 text-accent text-sm font-medium mb-4"
                   initial={{ opacity: 0 }}
                   whileInView={{ opacity: 1 }}
-                  viewport={{ once: true }}
+                  viewport={{ once: false }}
                 >
                   {temple.deity}
                 </motion.span>
@@ -136,7 +136,7 @@ export default function TemplesPage() {
             className="rounded-2xl border border-border/20 p-8 bg-card/50"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: false }}
           >
             <h3 className="text-2xl font-bold text-white mb-4">Spiritual Significance</h3>
             <p className="text-muted mb-4">

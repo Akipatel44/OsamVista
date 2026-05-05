@@ -45,8 +45,8 @@ export function VisitorInfo() {
         <motion.div
           className="text-center mb-16"
           initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: false }}
           transition={{ duration: 0.6 }}
         >
           <span className="inline-block px-4 py-2 rounded-full bg-accent/10 border border-accent/30 text-accent text-sm font-medium mb-4">
@@ -69,8 +69,8 @@ export function VisitorInfo() {
                 key={card.title}
                 className="group relative p-6 rounded-xl border border-border/20 bg-card hover:border-accent/40 transition-all duration-300"
                 initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: false }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 whileHover={{ y: -4 }}
               >
@@ -89,9 +89,9 @@ export function VisitorInfo() {
           <motion.div
             className="p-8 rounded-xl border border-border/20 bg-card/50 backdrop-blur-sm"
             initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: false }}
+              transition={{ duration: 0.6 }}
           >
             <h3 className="text-2xl font-bold text-white mb-6">Stay & Dine</h3>
             <div className="space-y-4">
@@ -121,7 +121,7 @@ export function VisitorInfo() {
             className="p-8 rounded-xl border border-border/20 bg-card/50 backdrop-blur-sm"
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: false }}
             transition={{ duration: 0.6 }}
           >
             <h3 className="text-2xl font-bold text-white mb-6">Safety & Tips</h3>

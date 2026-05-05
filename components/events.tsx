@@ -62,7 +62,7 @@ export function Events() {
           className="text-center mb-16"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: false }}
           transition={{ duration: 0.6 }}
         >
           <span className="inline-block px-4 py-2 rounded-full bg-accent/10 border border-accent/30 text-accent text-sm font-medium mb-4">
@@ -89,7 +89,7 @@ export function Events() {
                 className={`relative ${index % 2 === 0 ? 'lg:text-right' : 'lg:text-left'}`}
                 initial={{ opacity: 0, x: index % 2 === 0 ? -40 : 40 }}
                 whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
+                viewport={{ once: false }}
                 transition={{ duration: 0.6, delay: index * 0.15 }}
               >
                 {/* Timeline Dot */}
