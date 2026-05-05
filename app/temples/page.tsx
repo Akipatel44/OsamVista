@@ -8,7 +8,7 @@ import Image from 'next/image'
 const temples = [
   {
     name: 'Tapakeshwar Mahadeo Temple',
-    image: '/images/above_temple.jpg',
+    image: '/images/In_Ground_Big_Mahadev_Statue.jpg',
     deity: 'Lord Shiva',
     age: '104 Years Old',
     description: 'One of the most revered temples on Osam Hill, Tapakeshwar Mahadeo is dedicated to Lord Shiva and stands as a testament to centuries of devotion. Located at a scenic spot on the hilltop, this ancient temple attracts thousands of pilgrims annually.',
@@ -16,7 +16,7 @@ const temples = [
   },
   {
     name: 'Bhimnath Mahadeo Temple',
-    image: '/images/hill_stones_greenery2.jpg',
+    image: '/images/bhimnath_mahadev_temple.jpg',
     deity: 'Lord Shiva',
     age: 'Historic',
     description: 'Situated near the legendary Bhimkund (water pool believed to be created by Bhima), this temple holds deep mythological significance. It is believed that Bhima, one of the Pandavas, stayed near this sacred spring during the exile period.',
@@ -24,7 +24,7 @@ const temples = [
   },
   {
     name: 'Matrimataji Temple',
-    image: '/images/sunset.jpg',
+    image: '/images/MatriMatajiTemple.jpg',
     deity: 'Amba Devi',
     age: 'Very Old',
     description: 'The most prominent temple on Osam Hill, Matrimataji is dedicated to Amba Devi (Goddess Durga). This beautiful temple is the center of the annual Lok-Mela festival held on Shravan Amavashya, attracting huge crowds from across Gujarat and neighboring states.',
@@ -32,7 +32,7 @@ const temples = [
   },
   {
     name: 'Jain Temple Complex',
-    image: '/images/above_hill_straight_way.jpg',
+    image: '/images/HIll_Entry_Gate_2.jpg',
     deity: 'Tirthankaras',
     age: 'Historic',
     description: 'The hill hosts sacred Jain temples dedicated to Lord Shantinath and Lord Rushabhdeo. The Siddhchakra Jain Temple is notable for its unique circular design representing sacred geometry, making it a spiritual hub for Jain pilgrims.',

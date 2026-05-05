@@ -94,7 +94,7 @@ export default function FestivalPage() {
             transition={{ duration: 0.8 }}
           >
             <Image
-              src="/images/sunset.jpg"
+              src="/images/sunset_from_above.jpg"
               alt="Lok-Mela Festival celebration with pilgrims"
               fill
               className="object-cover"

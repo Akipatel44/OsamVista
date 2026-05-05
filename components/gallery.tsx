@@ -1,6 +1,6 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import { useState } from 'react'
 import Image from 'next/image'
 import { Download, X } from 'lucide-react'
@@ -21,22 +21,92 @@ const galleryImages: GalleryImage[] = [
   { id: 6, src: '/images/greenary_ground.jpg', category: 'Nature', title: 'Green Valley' },
   { id: 7, src: '/images/hill_stones_greenery.jpg', category: 'Culture', title: 'Stone Steps' },
   { id: 8, src: '/images/hill_stones_greenery2.jpg', category: 'Temples', title: 'Sacred Stones' },
+  { id: 9, src: '/images/after_rain_view.jpg', category: 'Nature', title: 'After Monsoon' },
+  { id: 10, src: '/images/bhimnath_mahadev_temple.jpg', category: 'Temples', title: 'Bhimnath Temple' },
+  { id: 11, src: '/images/farm_view_from_top_of_Hill.jpg', category: 'Landscape', title: 'Farm Valley View' },
+  { id: 12, src: '/images/HIll_Entry_Gate_2.jpg', category: 'Architecture', title: 'Hill Entry Gate' },
+  { id: 13, src: '/images/In_Ground_Big_Mahadev_Statue.jpg', category: 'Culture', title: 'Mahadev Statue' },
+  { id: 14, src: '/images/MatriMatajiTemple.jpg', category: 'Temples', title: 'Matrimataji Temple' },
+  { id: 15, src: '/images/stairs_between_monsoon.jpg', category: 'Architecture', title: 'Monsoon Stairs' },
+  { id: 16, src: '/images/stairs_between_nature.jpg', category: 'Nature', title: 'Nature Stairs' },
+  { id: 17, src: '/images/stairs_between_nature1.jpg', category: 'Nature', title: 'Nature Trail Steps' },
+  { id: 18, src: '/images/summer_view.jpg', category: 'Landscape', title: 'Summer Vista' },
+  { id: 19, src: '/images/sunset_from_above.jpg', category: 'Festivals', title: 'Sunset Peak' },
+  { id: 20, src: '/images/tapkeshwar_waterfall.jpg', category: 'Nature', title: 'Tapkeshwar Waterfall' },
+  { id: 21, src: '/images/top_view.jpg', category: 'Landscape', title: 'Hilltop Panorama' },
+  { id: 22, src: '/images/undiscover_caves.jpg', category: 'Culture', title: 'Undiscovered Caves' },
+  { id: 23, src: '/images/winter_view.jpg', category: 'Landscape', title: 'Winter Landscape' },
+  { id: 24, src: '/images/after_rain.jpg', category: 'Nature', title: 'Post-Rain Fresh' },
 ]
 
 const categories = ['All', 'Temples', 'Nature', 'Architecture', 'Landscape', 'Festivals', 'Culture']
 
+// Lightbox Component
+function Lightbox({ image, isOpen, onClose }: { image: GalleryImage | null; isOpen: boolean; onClose: () => void }) {
+  const getDownloadName = (img: GalleryImage) => {
+    const slug = img.title.toLowerCase().replace(/[^a-z0-9]+/g, '-')
+    return `osam-hills-${slug}.jpg`
+  }
+
+  return (
+    <AnimatePresence>
+      {isOpen && image && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.3 }}
+          className="fixed inset-0 z-[60] flex items-center justify-center bg-black/90 p-4"
+          onClick={onClose}
+        >
+          <motion.div
+            initial={{ scale: 0.8, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            exit={{ scale: 0.8, opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="relative max-h-[90vh] max-w-[90vw]"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <Image
+              src={image.src}
+              alt={image.title}
+              width={1200}
+              height={800}
+              className="max-h-[85vh] w-auto rounded-lg object-contain"
+            />
+            <button
+              onClick={onClose}
+              className="absolute -right-2 -top-2 flex h-10 w-10 items-center justify-center rounded-full bg-accent text-background shadow-lg hover:bg-accent/90 transition-colors"
+              aria-label="Close lightbox"
+            >
+              <X size={20} />
+            </button>
+            <div className="mt-4 text-center">
+              <p className="text-lg font-semibold text-white">{image.title}</p>
+              <p className="text-sm text-accent mb-4">{image.category}</p>
+              <a
+                href={image.src}
+                download={getDownloadName(image)}
+                className="inline-flex items-center gap-2 px-4 py-2 bg-accent text-background rounded-lg font-medium hover:bg-accent/90 transition-colors"
+              >
+                <Download size={18} />
+                Download Original
+              </a>
+            </div>
+          </motion.div>
+        </motion.div>
+      )}
+    </AnimatePresence>
+  )
+}
+
 export function Gallery() {
   const [selectedCategory, setSelectedCategory] = useState('All')
-  const [selectedImage, setSelectedImage] = useState<GalleryImage | null>(null)
+  const [lightboxImage, setLightboxImage] = useState<GalleryImage | null>(null)
 
   const filteredImages = selectedCategory === 'All'
     ? galleryImages
     : galleryImages.filter(img => img.category === selectedCategory)
-
-  const getDownloadName = (image: GalleryImage) => {
-    const slug = image.title.toLowerCase().replace(/[^a-z0-9]+/g, '-')
-    return `osam-hills-${slug}.jpg`
-  }
 
   return (
     <section id="gallery" className="relative py-20 sm:py-28 px-4 sm:px-6 lg:px-8 bg-background overflow-hidden">
@@ -90,101 +160,49 @@ export function Gallery() {
           ))}
         </motion.div>
 
-        {/* Image Grid */}
-        <motion.div
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
-          layout
-        >
+        {/* Masonry Gallery Grid */}
+        <div className="columns-1 gap-4 sm:columns-2 lg:columns-3">
           {filteredImages.map((image, index) => (
             <motion.div
-              key={image.id}
-              layout
-              initial={{ opacity: 0, scale: 0.8 }}
+              key={`${image.id}-${selectedCategory}`}
+              initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.8 }}
               transition={{ duration: 0.4, delay: index * 0.05 }}
-              className="group relative h-64 rounded-xl overflow-hidden cursor-pointer"
-              onClick={() => setSelectedImage(image)}
+              className="group relative mb-4 cursor-pointer break-inside-avoid overflow-hidden rounded-xl"
+              onClick={() => setLightboxImage(image)}
             >
               <Image
                 src={image.src}
-                alt={`Gallery ${image.id}`}
-                fill
-                className="object-cover"
+                alt={image.title}
+                width={600}
+                height={400 + (index % 3) * 100}
+                className="w-full object-cover transition-transform duration-500 group-hover:scale-110"
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
               />
               
-              {/* Overlay */}
-              <motion.div
-                className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-between p-4"
-                initial={{ opacity: 0 }}
-                whileHover={{ opacity: 1 }}
-              >
-                <div>
-                  <p className="text-white font-semibold">{image.title}</p>
-                  <p className="text-muted text-sm">Click to preview</p>
+              {/* Gradient Overlay on Hover */}
+              <div className="absolute inset-0 flex items-end bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 transition-opacity group-hover:opacity-100 duration-300">
+                <div className="p-4 w-full">
+                  <p className="text-sm font-medium text-white">{image.title}</p>
+                  <p className="text-xs text-accent">{image.category}</p>
                 </div>
+              </div>
 
-                <a
-                  href={image.src}
-                  download={getDownloadName(image)}
-                  onClick={(event) => event.stopPropagation()}
-                  className="inline-flex items-center gap-2 rounded-full bg-accent px-3 py-2 text-xs font-semibold text-background hover:bg-accent/90 transition-colors"
-                  aria-label={`Download ${image.title}`}
-                >
-                  <Download size={14} />
-                  Download
-                </a>
-              </motion.div>
-
-              {/* Border on Hover */}
-              <motion.div
-                className="absolute inset-0 border-2 border-accent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl"
-              />
+              {/* Zoom Icon on Hover */}
+              <div className="absolute inset-0 flex items-center justify-center opacity-0 transition-opacity group-hover:opacity-100 duration-300">
+                <div className="rounded-full bg-white/20 p-3 backdrop-blur-sm">
+                  <svg className="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
+                  </svg>
+                </div>
+              </div>
             </motion.div>
           ))}
-        </motion.div>
+        </div>
       </div>
 
       {/* Lightbox Modal */}
-      {selectedImage && (
-        <motion.div
-          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-background/90 backdrop-blur-sm"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          onClick={() => setSelectedImage(null)}
-        >
-          <motion.div
-            className="relative max-w-4xl w-full aspect-video rounded-xl overflow-hidden"
-            initial={{ scale: 0.9, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 0.3 }}
-            onClick={(e) => e.stopPropagation()}
-          >
-            <Image
-              src={selectedImage.src}
-              alt="Gallery full view"
-              fill
-              className="object-cover"
-            />
-            
-            {/* Close Button */}
-            <motion.button
-              className="absolute top-4 right-4 p-2 rounded-full bg-background/80 hover:bg-background text-white transition-colors"
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
-              onClick={() => setSelectedImage(null)}
-            >
-              <X size={24} />
-            </motion.button>
-
-            {/* Image Info */}
-            <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-background to-transparent">
-              <p className="text-accent font-semibold">{selectedImage.title}</p>
-              <p className="text-muted text-sm">{selectedImage.category}</p>
-            </div>
-          </motion.div>
-        </motion.div>
-      )}
+      <Lightbox image={lightboxImage} isOpen={!!lightboxImage} onClose={() => setLightboxImage(null)} />
     </section>
   )
 }
