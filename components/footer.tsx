@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { Mail, Phone, MapPin, Facebook, Twitter, Instagram, Linkedin } from 'lucide-react'
+import Image from 'next/image'
 
 export function Footer() {
   const currentYear = new Date().getFullYear()
@@ -54,11 +55,14 @@ export function Footer() {
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
-              <div className="flex items-center gap-2 mb-4">
-                <div className="w-8 h-8 rounded-lg bg-accent/20 border border-accent/40 flex items-center justify-center">
-                  <div className="w-2 h-2 rounded-full bg-accent" />
-                </div>
-                <span className="text-white font-bold text-lg">Osam Hills</span>
+              <div className="mb-4 inline-flex rounded-xl border border-accent/30 bg-background/80 p-2.5 shadow-lg">
+                <Image
+                  src="/OsamHillsLogo.png"
+                  alt="Osam Hills Logo"
+                  width={674}
+                  height={188}
+                  className="h-auto w-36 object-contain brightness-125 contrast-125 drop-shadow-[0_1px_2px_rgba(0,0,0,0.8)] sm:w-40"
+                />
               </div>
               <p className="text-muted text-sm leading-relaxed">
                 Discover the sacred heritage and natural beauty of Patanvav, Gujarat.

@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import { Menu, X } from 'lucide-react'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
+import Image from 'next/image'
 
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false)
@@ -39,18 +40,36 @@ export function Navbar() {
       transition={{ duration: 0.6 }}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16 sm:h-20">
+        <div className="flex items-center justify-between h-20 sm:h-24">
           {/* Logo */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.2 }}
-            className="flex items-center gap-2"
+            className={`flex items-center gap-2 rounded-lg border px-2 py-1.5 shadow-lg backdrop-blur-sm transition-all ${
+              isScrolled
+                ? 'border-accent/35 bg-background/90'
+                : 'border-white/20 bg-black/45'
+            }`}
           >
-            <div className="w-8 h-8 rounded-lg bg-accent/20 border border-accent/40 flex items-center justify-center">
-              <div className="w-2 h-2 rounded-full bg-accent" />
+            <div className="relative w-12 sm:w-14">
+              <Image
+                src="/OsamHillsLogo.png"
+                alt="Osam Hills Logo"
+                width={674}
+                height={188}
+                priority
+                className="h-auto w-full object-contain contrast-125 brightness-125 drop-shadow-[0_1px_2px_rgba(0,0,0,0.85)]"
+              />
             </div>
-            <span className="text-white font-semibold hidden sm:inline">Osam Hills</span>
+            <motion.span
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.3 }}
+              className="hidden sm:inline text-white font-bold text-sm sm:text-base whitespace-nowrap"
+            >
+              Osam Hills
+            </motion.span>
           </motion.div>
 
           {/* Desktop Navigation */}
