@@ -25,7 +25,6 @@ export function Navbar() {
     { label: 'Attractions', href: '/attractions' },
     { label: 'Festival', href: '/festival' },
     { label: 'Visitor Guide', href: '/visitor-guide' },
-    { label: 'Contact', href: '/contact' },
   ]
 
   return (
@@ -89,7 +88,8 @@ export function Navbar() {
           </div>
 
           {/* CTA Button */}
-          <motion.button
+          <motion.a
+            href="/contact"
             className="hidden sm:block px-4 sm:px-6 py-2 bg-accent text-background rounded-lg font-medium hover:bg-accent/90 transition-colors text-sm sm:text-base"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -98,7 +98,7 @@ export function Navbar() {
             whileTap={{ scale: 0.97 }}
           >
             Contact Us
-          </motion.button>
+          </motion.a>
 
           {/* Mobile Menu Button */}
           <button
@@ -127,9 +127,9 @@ export function Navbar() {
                 {item.label}
               </a>
             ))}
-            <button className="w-full mt-4 px-4 py-2 bg-accent text-background rounded-lg font-medium hover:bg-accent/90 transition-colors">
+            <a href="/contact" className="block w-full mt-4 px-4 py-2 bg-accent text-background rounded-lg font-medium hover:bg-accent/90 transition-colors text-center">
               Contact Us
-            </button>
+            </a>
           </motion.div>
         )}
       </div>
