@@ -2,6 +2,8 @@ import { Resend } from 'resend'
 import { NextRequest, NextResponse } from 'next/server'
 
 const resend = new Resend(process.env.RESEND_API_KEY)
+const MAX_TOTAL_SIZE = 4.5 * 1024 * 1024 // 4.5 MB in bytes
+const MAX_IMAGES = 5
 
 export async function POST(request: NextRequest) {
   try {
@@ -16,6 +18,27 @@ export async function POST(request: NextRequest) {
     if (!name || !email || !message) {
       return NextResponse.json(
         { error: 'Missing required fields' },
+        { status: 400 }
+      )
+    }
+
+    // Validate file count
+    if (files.length > MAX_IMAGES) {
+      return NextResponse.json(
+        { error: `Maximum ${MAX_IMAGES} images allowed` },
+        { status: 400 }
+      )
+    }
+
+    // Validate total file size
+    let totalSize = 0
+    for (const file of files) {
+      totalSize += file.size
+    }
+
+    if (totalSize > MAX_TOTAL_SIZE) {
+      return NextResponse.json(
+        { error: 'Total file size exceeds 4.5 MB limit. For larger files, please send them directly via email.' },
         { status: 400 }
       )
     }

@@ -5,6 +5,7 @@ import { Footer } from '@/components/footer'
 import { motion } from 'framer-motion'
 import { Mail, Phone, MapPin, MessageCircle, HelpCircle, X, Upload } from 'lucide-react'
 import { useState } from 'react'
+import { toast } from 'sonner'
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -22,7 +23,20 @@ export default function ContactPage() {
   const [showTooltip, setShowTooltip] = useState(false)
 
   const ALLOWED_FORMATS = ['image/jpeg', 'image/png', 'image/heic']
-  const MAX_IMAGES = 10
+  const MAX_IMAGES = 5
+  const MAX_TOTAL_SIZE = 4.5 * 1024 * 1024 // 4.5 MB in bytes
+
+  const calculateTotalSize = (files: File[]): number => {
+    return files.reduce((total, file) => total + file.size, 0)
+  }
+
+  const formatFileSize = (bytes: number): string => {
+    if (bytes === 0) return '0 Bytes'
+    const k = 1024
+    const sizes = ['Bytes', 'KB', 'MB']
+    const i = Math.floor(Math.log(bytes) / Math.log(k))
+    return Math.round((bytes / Math.pow(k, i)) * 100) / 100 + ' ' + sizes[i]
+  }
 
   const validateForm = (): boolean => {
     const errors: Record<string, string> = {}
@@ -64,28 +78,49 @@ export default function ContactPage() {
     const files = e.currentTarget.files
     if (!files) return
 
-    const errors: Record<string, string> = {}
     const newFiles: File[] = []
     const newPreviews: { file: File; preview: string }[] = []
+    let hasError = false
 
     for (let i = 0; i < files.length; i++) {
       const file = files[i]
 
       // Check file format
       if (!ALLOWED_FORMATS.includes(file.type)) {
-        errors.files = 'Only JPG, PNG, and HEIC formats are allowed'
-        break
+        toast.error(`File "${file.name}" is not in a supported format. Only JPG, PNG, and HEIC are allowed.`)
+        hasError = true
+        continue
       }
 
       // Check total files limit
       if (uploadedFiles.length + newFiles.length >= MAX_IMAGES) {
-        errors.files = `Maximum ${MAX_IMAGES} images allowed`
+        toast.error(`Maximum ${MAX_IMAGES} images allowed. You can only upload ${MAX_IMAGES - uploadedFiles.length} more image(s).`)
+        hasError = true
         break
       }
 
       newFiles.push(file)
+    }
 
-      // Create preview
+    // Check total size
+    const currentTotalSize = calculateTotalSize(uploadedFiles)
+    const newFilesTotalSize = calculateTotalSize(newFiles)
+    const combinedSize = currentTotalSize + newFilesTotalSize
+
+    if (combinedSize > MAX_TOTAL_SIZE) {
+      const exceededBy = combinedSize - MAX_TOTAL_SIZE
+      toast.error(
+        `Total file size exceeds the limit. You can upload up to 4.5 MB. Your selection exceeds this by ${formatFileSize(exceededBy)}.\n\nFor images larger than 4.5 MB, please send them directly via email.`,
+        {
+          duration: 5000,
+        }
+      )
+      e.currentTarget.value = ''
+      return
+    }
+
+    // Create previews and add files
+    newFiles.forEach((file) => {
       const reader = new FileReader()
       reader.onload = (event) => {
         if (event.target?.result) {
@@ -93,12 +128,11 @@ export default function ContactPage() {
         }
       }
       reader.readAsDataURL(file)
-    }
+    })
 
-    if (Object.keys(errors).length === 0) {
+    if (!hasError && newFiles.length > 0) {
       setUploadedFiles([...uploadedFiles, ...newFiles])
-    } else {
-      setValidationErrors({ ...validationErrors, ...errors })
+      toast.success(`${newFiles.length} image(s) added successfully.`)
     }
 
     // Reset input
@@ -353,11 +387,14 @@ export default function ContactPage() {
                     </button>
                     {showTooltip && (
                       <motion.div
-                        className="absolute bottom-full mb-2 right-0 bg-accent text-background text-xs p-3 rounded-lg whitespace-nowrap shadow-lg z-10"
+                        className="absolute bottom-full mb-2 right-0 bg-accent text-background text-xs p-3 rounded-lg whitespace-normal shadow-lg z-10 max-w-xs"
                         initial={{ opacity: 0, y: 5 }}
                         animate={{ opacity: 1, y: 0 }}
                       >
                         If the uploaded images are appropriate, they may be displayed on the website with your name and credit.
+                        <br />
+                        <br />
+                        <strong>Note:</strong> For images exceeding the 4.5 MB limit, please send them directly via email instead.
                         <div className="absolute top-full right-3 -mt-1 w-2 h-2 bg-accent transform rotate-45"></div>
                       </motion.div>
                     )}
@@ -380,10 +417,21 @@ export default function ContactPage() {
                       Drag and drop images or click to select
                     </p>
                     <p className="text-xs text-muted">
-                      JPG, PNG, HEIC • Max {MAX_IMAGES} images ({uploadedFiles.length}/{MAX_IMAGES})
+                      JPG, PNG, HEIC • Max {MAX_IMAGES} images • Max 4.5 MB total
+                    </p>
+                    <p className="text-xs text-muted/70">
+                      Uploaded: {uploadedFiles.length}/{MAX_IMAGES} • {formatFileSize(calculateTotalSize(uploadedFiles))}/4.5 MB
                     </p>
                   </label>
                 </div>
+
+                {uploadedFiles.length > 0 && calculateTotalSize(uploadedFiles) > 0 && (
+                  <div className="mt-3 p-3 bg-accent/10 border border-accent/20 rounded-lg">
+                    <p className="text-xs text-accent font-medium">
+                      Total size: {formatFileSize(calculateTotalSize(uploadedFiles))} / 4.5 MB
+                    </p>
+                  </div>
+                )}
 
                 {validationErrors.files && (
                   <p className="text-red-400 text-xs mt-2">{validationErrors.files}</p>
