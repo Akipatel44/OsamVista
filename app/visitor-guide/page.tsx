@@ -3,7 +3,6 @@
 import { Navbar } from '@/components/navbar'
 import { Footer } from '@/components/footer'
 import { motion } from 'framer-motion'
-import Link from 'next/link'
 import {
   Car,
   Clock,
@@ -244,11 +243,9 @@ export default function VisitorGuidePage() {
             <p className="text-muted text-lg mb-8">
               Contact us for personalized assistance and travel recommendations
             </p>
-            <Link href="/contact">
-              <button className="px-8 py-3 bg-accent text-background rounded-lg font-semibold hover:bg-accent/90 transition-colors">
-                Contact Us
-              </button>
-            </Link>
+            <button className="px-8 py-3 bg-accent text-background rounded-lg font-semibold hover:bg-accent/90 transition-colors">
+              Get in Touch
+            </button>
           </motion.div>
         </div>
       </section>
