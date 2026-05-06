@@ -34,7 +34,7 @@ export function Footer() {
   ]
 
   return (
-    <footer className="relative bg-background/50 border-t border-border/20 overflow-hidden">
+    <footer className="relative mt-auto bg-background/50 border-t border-border/20 overflow-hidden flex flex-col">
       {/* Decorative Background */}
       <motion.div
         className="absolute -right-40 -bottom-40 w-80 h-80 bg-accent/5 rounded-full blur-3xl"
@@ -42,9 +42,9 @@ export function Footer() {
         transition={{ duration: 8, repeat: Infinity }}
       />
 
-      <div className="relative z-10">
+      <div className="relative z-10 flex flex-col flex-grow">
         {/* Main Footer Content */}
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 w-full">
           {/* Top Section */}
           <div className="grid md:grid-cols-5 gap-8 mb-12">
             {/* Brand */}
@@ -97,7 +97,7 @@ export function Footer() {
 
           {/* Contact Info */}
           <motion.div
-            className="grid md:grid-cols-3 gap-8 pb-12 border-b border-border/20"
+            className="grid md:grid-cols-3 gap-8 pb-4 border-b border-border/20"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: false }}
@@ -139,7 +139,7 @@ export function Footer() {
           </motion.div>
 
           {/* Bottom Section */}
-          <div className="py-8 flex flex-col sm:flex-row items-center justify-between gap-6">
+          <div className="pt-4 mt-auto flex flex-col sm:flex-row items-center justify-between gap-6 border-t border-border/20">
             {/* Copyright */}
             <motion.p
               className="text-muted text-sm"
@@ -183,11 +183,11 @@ export function Footer() {
               viewport={{ once: false }}
               transition={{ delay: 0.7 }}
             >
-              <a href="#" className="text-muted hover:text-accent transition-colors">
+              <a href="/privacy-policy" className="text-muted hover:text-accent transition-colors">
                 Privacy Policy
               </a>
               <span className="text-border">•</span>
-              <a href="#" className="text-muted hover:text-accent transition-colors">
+              <a href="/terms-and-conditions" className="text-muted hover:text-accent transition-colors">
                 Terms of Service
               </a>
             </motion.div>
