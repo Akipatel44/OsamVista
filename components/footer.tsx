@@ -10,19 +10,39 @@ export function Footer() {
   const footerLinks = [
     {
       title: 'Explore',
-      links: ['Attractions', 'Events', 'Gallery', 'Experiences'],
+      links: [
+        { label: 'Attractions', href: '/attractions' },
+        { label: 'Festival', href: '/festival' },
+        { label: 'Gallery', href: '/gallery' },
+        { label: 'Temples', href: '/temples' },
+      ],
     },
     {
       title: 'Information',
-      links: ['Visitor Info', 'Getting There', 'Best Time', 'Safety'],
+      links: [
+        { label: 'Visitor Info', href: '/visitor-guide' },
+        { label: 'Getting There', href: '/visitor-guide' },
+        { label: 'Best Time', href: '/visitor-guide' },
+        { label: 'Safety', href: '/visitor-guide' },
+      ],
     },
     {
       title: 'Quick Links',
-      links: ['About', 'Contact', 'Book Visit', 'FAQ'],
+      links: [
+        { label: 'About', href: '/' },
+        { label: 'Contact', href: '/contact' },
+        { label: 'Privacy Policy', href: '/privacy-policy' },
+        { label: 'Terms & Conditions', href: '/terms-and-conditions' },
+      ],
     },
     {
       title: 'Connect',
-      links: ['Newsletter', 'Social Media', 'Reviews', 'Feedback'],
+      links: [
+        { label: 'Newsletter', href: '/contact' },
+        { label: 'Social Media', href: '#' },
+        { label: 'Reviews', href: '/contact' },
+        { label: 'Feedback', href: '/contact' },
+      ],
     },
   ]
 
@@ -81,12 +101,12 @@ export function Footer() {
                 <h4 className="text-white font-semibold mb-4">{section.title}</h4>
                 <ul className="space-y-3">
                   {section.links.map((link) => (
-                    <li key={link}>
+                    <li key={link.label}>
                       <a
-                        href="#"
+                        href={link.href}
                         className="text-muted text-sm hover:text-accent transition-colors"
                       >
-                        {link}
+                        {link.label}
                       </a>
                     </li>
                   ))}
@@ -110,7 +130,7 @@ export function Footer() {
               <div>
                 <p className="text-muted text-xs">Phone</p>
                 <a href="tel:+91" className="text-accent hover:text-accent/80 transition-colors">
-                  +91 XXXX XXX XXXX
+                  +91 XXX XXX XXXX
                 </a>
               </div>
             </div>

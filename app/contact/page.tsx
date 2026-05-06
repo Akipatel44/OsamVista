@@ -33,7 +33,7 @@ export default function ContactPage() {
     {
       icon: Phone,
       title: 'Phone',
-      details: ['+91 XXXX XXX XXXX'],
+      details: ['+91 XXX XXX XXXX'],
     },
     {
       icon: Mail,

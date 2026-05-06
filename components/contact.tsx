@@ -70,7 +70,7 @@ export function Contact() {
               {
                 icon: Phone,
                 label: 'Phone',
-                value: '+91 XXXX XXX XXXX',
+                value: '+91 XXX XXX XXXX',
                 color: 'from-blue-500/20 to-cyan-500/20',
               },
               {
