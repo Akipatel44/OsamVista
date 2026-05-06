@@ -30,7 +30,7 @@ export function About() {
             </span>
             
             <h2 className="text-4xl sm:text-5xl font-bold text-white mb-6">
-              Heart of Rajkot, Rajkot District
+              Heart of Rajkot District
             </h2>
             
             <p className="text-muted text-lg mb-6">
