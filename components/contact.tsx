@@ -6,6 +6,7 @@ import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 import { Mail, Phone, MapPin, Send } from 'lucide-react'
+import Link from 'next/link'
 
 const contactSchema = z.object({
   name: z.string().min(2, 'Name must be at least 2 characters'),
@@ -76,21 +77,22 @@ export function Contact() {
               {
                 icon: Mail,
                 label: 'Email',
-                value: 'info@osamhills.com',
+                value: 'akshayshingala112@gmail.com',
                 color: 'from-purple-500/20 to-pink-500/20',
               },
               {
                 icon: MapPin,
                 label: 'Location',
-                value: 'Patanvav, Bhavnagar, Gujarat',
+                value: 'Patanvav, Rajkot, Gujarat',
                 color: 'from-green-500/20 to-emerald-500/20',
+                isLink: true,
               },
             ].map((item, index) => {
               const Icon = item.icon
-              return (
+              const contentElement = (
                 <motion.div
                   key={item.label}
-                  className={`p-6 rounded-xl border border-border/20 bg-gradient-to-br ${item.color} backdrop-blur-sm`}
+                  className={`p-6 rounded-xl border border-border/20 bg-gradient-to-br ${item.color} backdrop-blur-sm ${item.isLink ? 'cursor-pointer hover:opacity-80 transition-opacity' : ''}`}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: false }}
@@ -103,10 +105,18 @@ export function Contact() {
                     </div>
                     <div>
                       <p className="text-muted text-sm">{item.label}</p>
-                      <p className="text-white font-semibold">{item.value}</p>
+                      <p className={`font-semibold ${item.isLink ? 'text-accent hover:text-accent/80' : 'text-white'}`}>{item.value}</p>
                     </div>
                   </div>
                 </motion.div>
+              )
+              
+              return item.isLink ? (
+                <Link key={item.label} href="/location">
+                  {contentElement}
+                </Link>
+              ) : (
+                contentElement
               )
             })}
           </div>
