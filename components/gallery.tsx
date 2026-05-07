@@ -59,41 +59,42 @@ function Lightbox({ image, isOpen, onClose }: { image: GalleryImage | null; isOp
           className="fixed inset-0 z-[60] flex items-center justify-center bg-black/90 p-4"
           onClick={onClose}
         >
-          <motion.div
-            initial={{ scale: 0.8, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            exit={{ scale: 0.8, opacity: 0 }}
-            transition={{ duration: 0.3 }}
-            className="relative max-h-[90vh] max-w-[90vw]"
-            onClick={(e) => e.stopPropagation()}
+        <motion.div
+          initial={{ scale: 0.8, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          exit={{ scale: 0.8, opacity: 0 }}
+          transition={{ duration: 0.3 }}
+          className="relative max-h-[90vh] max-w-[95vw] sm:max-w-[90vw] flex flex-col"
+          onClick={(e) => e.stopPropagation()}
+        >
+          <Image
+            src={image.src}
+            alt={image.title}
+            width={1200}
+            height={800}
+            className="max-h-[60vh] sm:max-h-[85vh] w-auto rounded-lg object-contain"
+            priority
+          />
+          <button
+            onClick={onClose}
+            className="absolute -right-1 sm:-right-2 -top-1 sm:-top-2 flex h-10 w-10 items-center justify-center rounded-full bg-accent text-background shadow-lg hover:bg-accent/90 active:scale-90 transition-all"
+            aria-label="Close lightbox"
           >
-            <Image
-              src={image.src}
-              alt={image.title}
-              width={1200}
-              height={800}
-              className="max-h-[85vh] w-auto rounded-lg object-contain"
-            />
-            <button
-              onClick={onClose}
-              className="absolute -right-2 -top-2 flex h-10 w-10 items-center justify-center rounded-full bg-accent text-background shadow-lg hover:bg-accent/90 transition-colors"
-              aria-label="Close lightbox"
+            <X size={20} />
+          </button>
+          <div className="mt-3 sm:mt-4 text-center">
+            <p className="text-base sm:text-lg font-semibold text-white">{image.title}</p>
+            <p className="text-xs sm:text-sm text-accent mb-3 sm:mb-4">{image.category}</p>
+            <a
+              href={image.src}
+              download={getDownloadName(image)}
+              className="inline-flex items-center gap-2 px-3 sm:px-4 py-2 bg-accent text-background rounded-lg font-medium text-sm sm:text-base hover:bg-accent/90 active:scale-95 transition-all"
             >
-              <X size={20} />
-            </button>
-            <div className="mt-4 text-center">
-              <p className="text-lg font-semibold text-white">{image.title}</p>
-              <p className="text-sm text-accent mb-4">{image.category}</p>
-              <a
-                href={image.src}
-                download={getDownloadName(image)}
-                className="inline-flex items-center gap-2 px-4 py-2 bg-accent text-background rounded-lg font-medium hover:bg-accent/90 transition-colors"
-              >
-                <Download size={18} />
-                Download Original
-              </a>
-            </div>
-          </motion.div>
+              <Download size={16} className="sm:size-4" />
+              Download Original
+            </a>
+          </div>
+        </motion.div>
         </motion.div>
       )}
     </AnimatePresence>
@@ -110,9 +111,9 @@ export function Gallery() {
 
   return (
     <section id="gallery" className="relative py-20 sm:py-28 px-4 sm:px-6 lg:px-8 bg-background overflow-hidden">
-      {/* Decorative Elements */}
+      {/* Decorative Elements - Hidden on Mobile */}
       <motion.div
-        className="absolute top-40 right-20 w-72 h-72 bg-accent/5 rounded-full blur-3xl"
+        className="hidden sm:block absolute top-40 right-20 w-40 sm:w-72 h-40 sm:h-72 bg-accent/5 rounded-full blur-3xl"
         animate={{ scale: [1, 1.2, 1] }}
         transition={{ duration: 8, repeat: Infinity }}
       />
@@ -139,7 +140,7 @@ export function Gallery() {
 
         {/* Category Filter */}
         <motion.div
-          className="flex flex-wrap justify-center gap-3 mb-12"
+          className="flex flex-wrap justify-center gap-2 sm:gap-3 mb-12 px-2"
           initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: false }}
@@ -149,10 +150,10 @@ export function Gallery() {
             <button
               key={category}
               onClick={() => setSelectedCategory(category)}
-              className={`px-6 py-2 rounded-full font-medium transition-all duration-300 ${
+              className={`px-4 sm:px-6 py-2 rounded-full font-medium text-sm sm:text-base transition-all duration-300 active:scale-95 ${
                 selectedCategory === category
                   ? 'bg-accent text-background'
-                  : 'bg-card border border-border/20 text-muted hover:border-accent/40 hover:text-accent'
+                  : 'bg-card border border-border/20 text-muted hover:border-accent/40 hover:text-accent active:border-accent/60'
               }`}
             >
               {category}

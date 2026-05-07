@@ -42,15 +42,15 @@ export function Hero() {
       {/* Gradient Overlay */}
       <div className="absolute inset-0 bg-gradient-to-br from-background/80 via-background/50 to-background/70" />
 
-      {/* Decorative Elements */}
+      {/* Decorative Elements - Hidden on Mobile for Performance */}
       <motion.div
-        className="absolute top-20 right-10 w-72 h-72 bg-accent/10 rounded-full blur-3xl"
+        className="hidden sm:block absolute top-20 right-10 w-40 sm:w-72 h-40 sm:h-72 bg-accent/10 rounded-full blur-3xl"
         animate={{ y: [0, 40, 0], rotate: [0, 90, 180] }}
         transition={{ duration: 8, repeat: Infinity }}
       />
 
       <motion.div
-        className="absolute -bottom-32 -left-32 w-96 h-96 bg-accent/5 rounded-full blur-3xl"
+        className="hidden sm:block absolute -bottom-32 -left-32 w-48 sm:w-96 h-48 sm:h-96 bg-accent/5 rounded-full blur-3xl"
         animate={{ y: [0, -40, 0], rotate: [180, 90, 0] }}
         transition={{ duration: 10, repeat: Infinity }}
       />
@@ -94,30 +94,30 @@ export function Hero() {
 
         {/* CTA Buttons */}
         <motion.div
-          className="flex flex-col sm:flex-row gap-4 mt-8"
+          className="flex flex-col sm:flex-row gap-3 sm:gap-4 mt-8 w-full sm:w-auto px-4 sm:px-0"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.8, ease: [0.22, 1, 0.36, 1] }}
         >
           <motion.button
             onClick={handleStartExploring}
-            className="group px-8 py-4 bg-accent text-background rounded-lg font-semibold hover:bg-accent/90 transition-colors flex items-center justify-center gap-2 cursor-pointer"
+            className="group px-6 sm:px-8 py-3 sm:py-4 bg-accent text-background rounded-lg font-semibold hover:bg-accent/90 transition-colors flex items-center justify-center gap-2 cursor-pointer text-sm sm:text-base"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             title="Navigate to gallery to explore images of Osam Hills"
           >
             Start Exploring
-            <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
+            <ArrowRight size={18} className="sm:size-5 group-hover:translate-x-1 transition-transform" />
           </motion.button>
           <motion.button
             onClick={handleLearnMore}
-            className="px-8 py-4 border border-accent/50 text-accent rounded-lg font-semibold hover:bg-accent/10 transition-colors cursor-pointer flex items-center justify-center gap-2"
+            className="px-6 sm:px-8 py-3 sm:py-4 border border-accent/50 text-accent rounded-lg font-semibold hover:bg-accent/10 transition-colors cursor-pointer flex items-center justify-center gap-2 text-sm sm:text-base"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             title="Scroll down to learn more about Osam Hills"
           >
             Learn More
-            <ArrowDown size={20} />
+            <ArrowDown size={18} className="sm:size-5" />
           </motion.button>
         </motion.div>
 

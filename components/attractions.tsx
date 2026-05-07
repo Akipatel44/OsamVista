@@ -50,14 +50,15 @@ const AttractionCard = ({ attraction, index }: { attraction: typeof attractions[
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: false }}
       transition={{ duration: 0.6, delay: index * 0.15 }}
-      whileHover={{ y: -8, transition: { duration: 0.3 } }}
-      className="group bg-card border border-border/20 rounded-xl overflow-hidden hover:border-accent/40 transition-all duration-300"
+      whileHover={{ y: -4, transition: { duration: 0.3 } }}
+      className="group bg-card border border-border/20 rounded-xl overflow-hidden hover:border-accent/40 transition-all duration-300 active:border-accent/60"
     >
       {/* Image Container */}
-      <div className="relative h-48 overflow-hidden">
+      <div className="relative h-40 sm:h-48 overflow-hidden">
         <motion.div
           className="w-full h-full"
           whileHover={{ scale: 1.08 }}
+          whileTap={{ scale: 1.05 }}
           transition={{ duration: 0.4 }}
         >
           <Image
@@ -65,14 +66,15 @@ const AttractionCard = ({ attraction, index }: { attraction: typeof attractions[
             alt={attraction.title}
             fill
             className="object-cover"
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
           />
         </motion.div>
         <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent" />
         
         {/* Category Badge */}
-        <div className="absolute top-4 right-4">
+        <div className="absolute top-2 right-2 sm:top-4 sm:right-4">
           <motion.span
-            className="px-3 py-1 bg-accent/20 text-accent text-xs font-medium rounded-full border border-accent/40 backdrop-blur-sm"
+            className="px-2 sm:px-3 py-1 bg-accent/20 text-accent text-xs font-medium rounded-full border border-accent/40 backdrop-blur-sm"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ delay: 0.2 }}
@@ -83,27 +85,27 @@ const AttractionCard = ({ attraction, index }: { attraction: typeof attractions[
       </div>
 
       {/* Content */}
-      <div className="p-6">
-        <h3 className="text-xl font-bold text-white mb-2">{attraction.title}</h3>
-        <p className="text-muted text-sm mb-4 line-clamp-2">{attraction.description}</p>
+      <div className="p-4 sm:p-6">
+        <h3 className="text-lg sm:text-xl font-bold text-white mb-2">{attraction.title}</h3>
+        <p className="text-muted text-xs sm:text-sm mb-4 line-clamp-2">{attraction.description}</p>
 
         {/* Info Grid */}
-        <div className="grid grid-cols-2 gap-3 mb-4">
-          <div className="flex items-center gap-2 text-sm">
-            <Clock size={16} className="text-accent" />
+        <div className="grid grid-cols-2 gap-2 sm:gap-3 mb-4">
+          <div className="flex items-center gap-2 text-xs sm:text-sm">
+            <Clock size={14} className="sm:size-4 text-accent flex-shrink-0" />
             <span className="text-muted text-xs">{attraction.hours}</span>
           </div>
-          <div className="flex items-center gap-2 text-sm">
-            <Users size={16} className="text-accent" />
+          <div className="flex items-center gap-2 text-xs sm:text-sm">
+            <Users size={14} className="sm:size-4 text-accent flex-shrink-0" />
             <span className="text-muted text-xs">{attraction.visitors} visitors</span>
           </div>
         </div>
 
         {/* Button */}
         <motion.button
-          className="w-full px-4 py-2 bg-accent/10 text-accent rounded-lg text-sm font-medium hover:bg-accent/20 transition-colors border border-accent/30"
+          className="w-full px-4 py-2 bg-accent/10 text-accent rounded-lg text-xs sm:text-sm font-medium hover:bg-accent/20 active:bg-accent/30 transition-colors border border-accent/30 active:scale-95"
           whileHover={{ scale: 1.02 }}
-          whileTap={{ scale: 0.98 }}
+          whileTap={{ scale: 0.95 }}
         >
           Learn More
         </motion.button>
@@ -115,9 +117,9 @@ const AttractionCard = ({ attraction, index }: { attraction: typeof attractions[
 export function Attractions() {
   return (
     <section id="attractions" className="relative py-20 sm:py-28 px-4 sm:px-6 lg:px-8 bg-background overflow-hidden">
-      {/* Decorative Background */}
+      {/* Decorative Background - Hidden on Mobile */}
       <motion.div
-        className="absolute -right-40 top-20 w-80 h-80 bg-accent/5 rounded-full blur-3xl"
+        className="hidden sm:block absolute -right-40 top-20 w-60 sm:w-80 h-60 sm:h-80 bg-accent/5 rounded-full blur-3xl"
         animate={{ x: [0, 30, 0] }}
         transition={{ duration: 8, repeat: Infinity }}
       />
@@ -143,7 +145,7 @@ export function Attractions() {
         </motion.div>
 
         {/* Attractions Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
           {attractions.map((attraction, index) => (
             <AttractionCard key={attraction.id} attraction={attraction} index={index} />
           ))}

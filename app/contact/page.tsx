@@ -247,26 +247,26 @@ export default function ContactPage() {
       </section>
 
       {/* Contact Info Cards */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8">
+      <section className="py-12 sm:py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8 mb-12 sm:mb-16">
             {contactInfo.map((info, index) => {
               const Icon = info.icon
               return (
                 <motion.div
                   key={info.title}
-                  className="rounded-2xl border border-border/20 bg-card/30 p-6 text-center hover:border-accent/40 transition-all duration-300"
+                  className="rounded-2xl border border-border/20 bg-card/30 p-4 sm:p-6 text-center hover:border-accent/40 transition-all duration-300 active:border-accent/60"
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: false }}
                   transition={{ delay: index * 0.1 }}
                 >
-                  <div className="w-12 h-12 rounded-lg bg-accent/20 border border-accent/40 flex items-center justify-center mx-auto mb-4">
-                    <Icon size={24} className="text-accent" />
+                  <div className="w-10 sm:w-12 h-10 sm:h-12 rounded-lg bg-accent/20 border border-accent/40 flex items-center justify-center mx-auto mb-3 sm:mb-4">
+                    <Icon size={20} className="sm:size-6 text-accent" />
                   </div>
-                  <h3 className="text-lg font-bold text-white mb-3">{info.title}</h3>
+                  <h3 className="text-base sm:text-lg font-bold text-white mb-2 sm:mb-3">{info.title}</h3>
                   {info.details.map((detail) => (
-                    <p key={detail} className="text-muted text-sm mb-1">
+                    <p key={detail} className="text-muted text-xs sm:text-sm mb-1">
                       {detail}
                     </p>
                   ))}
@@ -278,18 +278,18 @@ export default function ContactPage() {
       </section>
 
       {/* Contact Form */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-card/30">
+      <section className="py-12 sm:py-20 px-4 sm:px-6 lg:px-8 bg-card/30">
         <div className="max-w-4xl mx-auto">
           <motion.div
-            className="rounded-2xl border border-border/20 bg-card/50 p-12"
+            className="rounded-2xl border border-border/20 bg-card/50 p-6 sm:p-8 lg:p-12"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: false }}
           >
-            <h2 className="text-3xl font-bold text-white mb-8">Send us a Message</h2>
+            <h2 className="text-2xl sm:text-3xl font-bold text-white mb-6 sm:mb-8">Send us a Message</h2>
 
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div className="grid md:grid-cols-2 gap-6">
+            <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                 {/* Name */}
                 <div>
                   <label className="block text-sm font-medium text-foreground mb-2">
