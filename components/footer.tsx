@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion'
 import { Mail, Phone, MapPin, Facebook, Twitter, Instagram, Linkedin } from 'lucide-react'
 import Image from 'next/image'
+import Link from 'next/link'
 
 export function Footer() {
   const currentYear = new Date().getFullYear()
@@ -141,21 +142,23 @@ export function Footer() {
               </div>
               <div>
                 <p className="text-muted text-xs">Email</p>
-                <a href="mailto:info@osamhills.com" className="text-accent hover:text-accent/80 transition-colors">
-                  info@osamhills.com
+                <a href="mailto:akshayshingala112@gmail.com" className="text-accent hover:text-accent/80 transition-colors">
+                  akshayshingala112@gmail.com
                 </a>
               </div>
             </div>
 
-            <div className="flex items-center gap-4">
-              <div className="w-10 h-10 rounded-lg bg-accent/20 border border-accent/40 flex items-center justify-center flex-shrink-0">
-                <MapPin size={18} className="text-accent" />
+            <Link href="/location">
+              <div className="flex items-center gap-4 cursor-pointer hover:opacity-80 transition-opacity">
+                <div className="w-10 h-10 rounded-lg bg-accent/20 border border-accent/40 flex items-center justify-center flex-shrink-0">
+                  <MapPin size={18} className="text-accent" />
+                </div>
+                <div>
+                  <p className="text-muted text-xs">Location</p>
+                  <p className="text-accent hover:text-accent/80 transition-colors text-sm font-medium">Patanvav, Rajkot, Gujarat</p>
+                </div>
               </div>
-              <div>
-                <p className="text-muted text-xs">Location</p>
-                <p className="text-foreground text-sm">Patanvav, Rajkot, Gujarat</p>
-              </div>
-            </div>
+            </Link>
           </motion.div>
 
           {/* Bottom Section */}

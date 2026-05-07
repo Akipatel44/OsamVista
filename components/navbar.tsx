@@ -5,8 +5,10 @@ import { Menu, X } from 'lucide-react'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import Image from 'next/image'
+import { useRouter } from 'next/navigation'
 
 export function Navbar() {
+  const router = useRouter()
   const [isScrolled, setIsScrolled] = useState(false)
   const [isOpen, setIsOpen] = useState(false)
 
@@ -41,15 +43,17 @@ export function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20 sm:h-24">
           {/* Logo */}
-          <motion.div
+          <motion.button
+            onClick={() => router.push('/')}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.2 }}
-            className={`flex items-center gap-2 rounded-lg border px-2 py-1.5 shadow-lg backdrop-blur-sm transition-all ${
+            className={`flex items-center gap-2 rounded-lg border px-2 py-1.5 shadow-lg backdrop-blur-sm transition-all cursor-pointer hover:opacity-80 ${
               isScrolled
                 ? 'border-accent/35 bg-background/90'
                 : 'border-white/20 bg-black/45'
             }`}
+            title="Go to home page"
           >
             <div className="relative w-12 sm:w-14">
               <Image
@@ -66,10 +70,8 @@ export function Navbar() {
               animate={{ opacity: 1 }}
               transition={{ delay: 0.3 }}
               className="hidden sm:inline text-white font-bold text-sm sm:text-base whitespace-nowrap"
-            >
-              Osam Hills
-            </motion.span>
-          </motion.div>
+            ></motion.span>
+          </motion.button>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8">
