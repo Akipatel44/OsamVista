@@ -1,10 +1,25 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { ArrowRight } from 'lucide-react'
+import { ArrowRight, ArrowDown } from 'lucide-react'
 import Image from 'next/image'
+import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 
 export function Hero() {
+  const router = useRouter()
+
+  const handleStartExploring = () => {
+    router.push('/gallery')
+  }
+
+  const handleLearnMore = () => {
+    const aboutSection = document.getElementById('about')
+    if (aboutSection) {
+      aboutSection.scrollIntoView({ behavior: 'smooth' })
+    }
+  }
+
   return (
     <section className="relative min-h-screen w-full overflow-hidden pt-20">
       {/* Background Image with Parallax */}
@@ -84,13 +99,26 @@ export function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.8, ease: [0.22, 1, 0.36, 1] }}
         >
-          <button className="group px-8 py-4 bg-accent text-background rounded-lg font-semibold hover:bg-accent/90 transition-colors flex items-center justify-center gap-2">
+          <motion.button
+            onClick={handleStartExploring}
+            className="group px-8 py-4 bg-accent text-background rounded-lg font-semibold hover:bg-accent/90 transition-colors flex items-center justify-center gap-2 cursor-pointer"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            title="Navigate to gallery to explore images of Osam Hills"
+          >
             Start Exploring
             <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
-          </button>
-          <button className="px-8 py-4 border border-accent/50 text-accent rounded-lg font-semibold hover:bg-accent/10 transition-colors">
+          </motion.button>
+          <motion.button
+            onClick={handleLearnMore}
+            className="px-8 py-4 border border-accent/50 text-accent rounded-lg font-semibold hover:bg-accent/10 transition-colors cursor-pointer flex items-center justify-center gap-2"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            title="Scroll down to learn more about Osam Hills"
+          >
             Learn More
-          </button>
+            <ArrowDown size={20} />
+          </motion.button>
         </motion.div>
 
         {/* Scroll Indicator */}

@@ -2,7 +2,8 @@
 
 import { motion } from 'framer-motion'
 import Image from 'next/image'
-import { CheckCircle } from 'lucide-react'
+import { CheckCircle, ArrowRight } from 'lucide-react'
+import { useRouter } from 'next/navigation'
 
 const features = [
   '4 Ancient Temples',
@@ -14,6 +15,12 @@ const features = [
 ]
 
 export function About() {
+  const router = useRouter()
+
+  const handleExploreMore = () => {
+    router.push('/attractions')
+  }
+
   return (
     <section id="about" className="relative py-20 sm:py-28 px-4 sm:px-6 lg:px-8 bg-background">
       <div className="max-w-7xl mx-auto">
@@ -63,11 +70,14 @@ export function About() {
 
             {/* CTA Button */}
             <motion.button
-              className="mt-8 px-8 py-3 bg-accent text-background rounded-lg font-semibold hover:bg-accent/90 transition-colors"
+              onClick={handleExploreMore}
+              className="mt-8 px-8 py-3 bg-accent text-background rounded-lg font-semibold hover:bg-accent/90 transition-colors cursor-pointer flex items-center gap-2 group"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.97 }}
+              title="Explore attractions and temples at Osam Hills"
             >
               Explore More
+              <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
             </motion.button>
           </motion.div>
 
