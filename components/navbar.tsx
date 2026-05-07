@@ -31,11 +31,10 @@ export function Navbar() {
 
   return (
     <motion.nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled
           ? 'bg-background/80 backdrop-blur-md border-b border-border/20'
           : 'bg-transparent'
-      }`}
+        }`}
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
@@ -48,11 +47,10 @@ export function Navbar() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.2 }}
-            className={`flex items-center gap-2 rounded-lg border px-2 py-1.5 shadow-lg backdrop-blur-sm transition-all cursor-pointer hover:opacity-80 ${
-              isScrolled
+            className={`flex items-center gap-2 rounded-lg border px-2 py-1.5 shadow-lg backdrop-blur-sm transition-all cursor-pointer hover:opacity-80 ${isScrolled
                 ? 'border-accent/35 bg-background/90'
                 : 'border-white/20 bg-black/45'
-            }`}
+              }`}
             title="Go to home page"
           >
             <div className="relative w-12 sm:w-14">
@@ -70,7 +68,9 @@ export function Navbar() {
               animate={{ opacity: 1 }}
               transition={{ delay: 0.3 }}
               className="hidden sm:inline text-white font-bold text-sm sm:text-base whitespace-nowrap"
-            ></motion.span>
+            >
+              Osam Hills
+            </motion.span>
           </motion.button>
 
           {/* Desktop Navigation */}
