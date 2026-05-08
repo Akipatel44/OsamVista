@@ -67,7 +67,7 @@ export function Navbar() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.3 }}
-              className="hidden sm:inline text-white font-bold text-sm sm:text-base whitespace-nowrap"
+              className="inline text-white font-bold text-xs sm:text-sm md:text-base whitespace-nowrap"
             >
               Osam Hills
             </motion.span>
@@ -114,7 +114,7 @@ export function Navbar() {
         {/* Mobile Menu */}
         {isOpen && (
           <motion.div
-            className="md:hidden pb-4 space-y-2 border-t border-border/20"
+            className="md:hidden pb-4 space-y-2 border-t border-border/20 bg-background/60 backdrop-blur-md"
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             transition={{ duration: 0.3 }}
