@@ -7,15 +7,15 @@ import Image from 'next/image'
 
 const temples = [
   {
-    name: 'Tapakeshwar Mahadeo Temple',
+    name: 'Tapakeshwar Mahadev Temple',
     image: '/images/In_Ground_Big_Mahadev_Statue.jpg',
     deity: 'Lord Shiva',
     age: '104 Years Old',
-    description: 'One of the most revered temples on Osam Hill, Tapakeshwar Mahadeo is dedicated to Lord Shiva and stands as a testament to centuries of devotion. Located at a scenic spot on the hilltop, this ancient temple attracts thousands of pilgrims annually.',
+    description: 'One of the most revered temples on Osam Hill, Tapakeshwar Mahadev is dedicated to Lord Shiva and stands as a testament to centuries of devotion. Located at a scenic spot on the hilltop, this ancient temple attracts thousands of pilgrims annually.',
     highlights: ['Ancient Architecture', 'Sacred Water Spring', 'Panoramic Views', 'Pilgrimage Site'],
   },
   {
-    name: 'Bhimnath Mahadeo Temple',
+    name: 'Bhimnath Mahadev Temple',
     image: '/images/bhimnath_mahadev_temple.jpg',
     deity: 'Lord Shiva',
     age: 'Historic',
