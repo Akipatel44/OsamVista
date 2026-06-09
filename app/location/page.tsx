@@ -3,8 +3,9 @@
 import { Navbar } from '@/components/navbar'
 import { Footer } from '@/components/footer'
 import { motion } from 'framer-motion'
-import { MapPin, ArrowLeft } from 'lucide-react'
+import { MapPin, ArrowLeft, Car } from 'lucide-react'
 import { useRouter } from 'next/navigation'
+import { routesToOsamHill, formatRouteDistance } from '@/lib/routes'
 
 export default function LocationPage() {
   const router = useRouter()
@@ -40,7 +41,7 @@ export default function LocationPage() {
               </h1>
             </div>
             <p className="text-muted max-w-2xl mx-auto text-lg">
-              Located in Patanvav, Dhoraji Taluka, Rajkot District, Gujarat - 110 km from Rajkot City
+              Located in Patanvav, Dhoraji Taluka, Rajkot District, Gujarat — 114 km from Rajkot City
             </p>
           </motion.div>
 
@@ -76,12 +77,32 @@ export default function LocationPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
+            <div className="p-6 rounded-xl border border-border/20 bg-card/30 backdrop-blur-sm md:col-span-3">
+              <div className="flex items-center gap-3 mb-4">
+                <Car size={22} className="text-accent" />
+                <h3 className="text-lg font-semibold text-accent">Routes to Osam Hill</h3>
+              </div>
+              <ul className="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-3 text-muted">
+                {routesToOsamHill.map((route) => (
+                  <li key={route.from}>
+                    <span className="font-medium text-foreground">{route.from}</span>
+                    {' — '}
+                    {formatRouteDistance(route)}
+                    {route.via && (
+                      <span className="block text-sm text-muted/80 mt-0.5">
+                        Via {route.via.join(', ')}
+                      </span>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
             <div className="p-6 rounded-xl border border-border/20 bg-card/30 backdrop-blur-sm">
-              <h3 className="text-lg font-semibold text-accent mb-2">Distance from Cities</h3>
+              <h3 className="text-lg font-semibold text-accent mb-2">Other Distances</h3>
               <ul className="space-y-2 text-muted">
-                <li>Rajkot City: 110 km</li>
                 <li>Bhavnagar: 80 km</li>
-                <li>Dhoraji: 15 km</li>
+                <li>Upleta: 13 km</li>
               </ul>
             </div>
 

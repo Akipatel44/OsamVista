@@ -41,7 +41,7 @@ export function About() {
             </h2>
             
             <p className="text-muted text-lg mb-6">
-              Located in Patanvav, Dhoraji Taluka, Rajkot District (110 km from Rajkot city), Osam Hills is a sacred pilgrimage destination 
+              Located in Patanvav, Dhoraji Taluka, Rajkot District (114 km from Rajkot city), Osam Hills is a sacred pilgrimage destination 
               featuring four ancient temples. The hill itself forms the holy Aum symbol when viewed from above, making it spiritually significant 
               to both Hindus and Jains. It is also India's only source of Perlite mineral.
             </p>

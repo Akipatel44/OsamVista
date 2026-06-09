@@ -5,6 +5,7 @@ import { Footer } from '@/components/footer'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 import { Map, Camera, Compass, Droplet } from 'lucide-react'
+import { routesToOsamHill, formatDistance } from '@/lib/routes'
 
 const attractions = [
   {
@@ -147,32 +148,29 @@ export default function AttractionsPage() {
 
       {/* Quick Facts */}
       <section className="py-16 px-4 sm:px-6 lg:px-8 bg-card/30">
-        <div className="max-w-7xl mx-auto grid md:grid-cols-3 gap-8">
+        <div className="max-w-7xl mx-auto grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          {routesToOsamHill.slice(0, 5).map((route, index) => (
+            <motion.div
+              key={route.from}
+              className="text-center"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: false }}
+              transition={{ delay: index * 0.05 }}
+            >
+              <p className="text-4xl font-bold text-accent mb-2">
+                {formatDistance(route.distanceKm)}
+              </p>
+              <p className="text-muted">From {route.from}</p>
+              <p className="text-sm text-muted/80 mt-1">~{route.duration}</p>
+            </motion.div>
+          ))}
           <motion.div
-            className="text-center"
+            className="text-center sm:col-span-2 lg:col-span-3"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: false }}
-          >
-            <p className="text-4xl font-bold text-accent mb-2">110 km</p>
-            <p className="text-muted">From Rajkot City</p>
-          </motion.div>
-          <motion.div
-            className="text-center"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: false }}
-            transition={{ delay: 0.1 }}
-          >
-            <p className="text-4xl font-bold text-accent mb-2">22 km</p>
-            <p className="text-muted">From Dhoraji Taluka</p>
-          </motion.div>
-          <motion.div
-            className="text-center"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: false }}
-            transition={{ delay: 0.2 }}
+            transition={{ delay: 0.25 }}
           >
             <p className="text-4xl font-bold text-accent mb-2">Unique</p>
             <p className="text-muted">Only Perlite Source in India</p>

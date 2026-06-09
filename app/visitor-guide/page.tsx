@@ -9,7 +9,6 @@ import {
   Clock,
   MapPin,
   AlertCircle,
-  Cloud,
   Utensils,
   Footprints,
   Droplets,
@@ -20,6 +19,7 @@ import {
   HeartPulse,
   Camera,
 } from 'lucide-react'
+import { routesToOsamHill, formatRouteDistance } from '@/lib/routes'
 
 export default function VisitorGuidePage() {
   const guides = [
@@ -27,10 +27,10 @@ export default function VisitorGuidePage() {
       icon: MapPin,
       title: 'How to Reach',
       items: [
-        { label: 'By Road', detail: '110 km from Rajkot (2.5-3 hours), 22 km from Dhoraji (45 minutes), 13 km from Upleta (30 minutes)' },
-        { label: 'Nearest Airport', detail: 'Rajkot Airport (110 km) - Connect with major cities like Ahmedabad, Delhi, Mumbai' },
-        { label: 'Nearest Railway', detail: 'Dhoraji Railway Station on Rajkot-Jetalsar-Porbandar line (22 km away)' },
-        { label: 'Route', detail: 'Well-maintained motorable road from Dhoraji to Patanvav through scenic routes' },
+        { label: 'By Road', detail: 'Well-maintained motorable roads connect Osam Hill to Rajkot (114 km), Gondal (71.2 km), Virpur (54 km), Jetpur (41.2 km), and Dhoraji (23.4 km)' },
+        { label: 'Nearest Airport', detail: 'Rajkot Airport (114 km) — connect with major cities like Ahmedabad, Delhi, and Mumbai' },
+        { label: 'Nearest Railway', detail: 'Dhoraji Railway Station on the Rajkot-Jetalsar-Porbandar line (23.4 km away)' },
+        { label: 'Main Route', detail: 'From Rajkot, the route passes through Gondal, Virpur, Jetpur, and Dhoraji before reaching Osam Hill at Patanvav' },
       ],
     },
     {
@@ -143,6 +143,53 @@ export default function VisitorGuidePage() {
         </div>
       </section>
 
+      {/* Routes to Osam Hill */}
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-card/30">
+        <div className="max-w-7xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: false }}
+            transition={{ duration: 0.8 }}
+          >
+            <div className="flex items-center gap-4 mb-4">
+              <div className="w-14 h-14 rounded-lg bg-accent/20 border border-accent/40 flex items-center justify-center">
+                <Car size={28} className="text-accent" />
+              </div>
+              <h2 className="text-3xl font-bold text-white">Routes to Osam Hill</h2>
+            </div>
+            <p className="text-muted mb-8 max-w-2xl">
+              Driving distances and approximate travel times from nearby towns
+            </p>
+
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {routesToOsamHill.map((route, index) => (
+                <motion.div
+                  key={route.from}
+                  className="rounded-2xl border border-border/20 bg-background/40 p-6 hover:border-accent/40 transition-all duration-300"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: false }}
+                  transition={{ delay: index * 0.1 }}
+                >
+                  <h3 className="text-lg font-semibold text-accent mb-2">
+                    {route.from} to Osam Hill
+                  </h3>
+                  <p className="text-muted leading-relaxed mb-3">
+                    {formatRouteDistance(route)}
+                  </p>
+                  {route.via && (
+                    <p className="text-sm text-muted/80">
+                      Via {route.via.join(', ')}
+                    </p>
+                  )}
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
       {/* Packing Essentials */}
       <section className="py-20 px-4 sm:px-6 lg:px-8 bg-card/30">
         <div className="max-w-7xl mx-auto">
@@ -198,10 +245,9 @@ export default function VisitorGuidePage() {
                 <h3 className="text-lg font-semibold text-accent mb-4">Distances</h3>
                 <ul className="space-y-2">
                   {[
-                    'Rajkot to Patanvav: 110 km',
-                    'Dhoraji to Patanvav: 22 km',
-                    'Upleta to Patanvav: 13 km',
-                    'Junagadh (Girnar) to Patanvav: 26 km',
+                    ...routesToOsamHill.map((route) => `${route.from} to Osam Hill: ${formatRouteDistance(route)}`),
+                    'Upleta to Osam Hill: 13 km',
+                    'Junagadh (Girnar) to Osam Hill: 26 km',
                   ].map((item) => (
                     <li key={item} className="flex items-center gap-2 text-muted">
                       <span className="w-1.5 h-1.5 rounded-full bg-accent" />
