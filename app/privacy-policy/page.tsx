@@ -19,7 +19,7 @@ export default function PrivacyPolicy() {
             transition={{ duration: 0.6 }}
           >
             <h1 className="text-4xl sm:text-5xl font-bold text-white mb-4">Privacy Policy</h1>
-            <p className="text-muted text-lg">Your privacy is important to us</p>
+            <p className="text-muted text-lg">Your Privacy is important to us</p>
           </motion.div>
         </div>
       </section>
