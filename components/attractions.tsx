@@ -1,151 +1,146 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { MapPin, Clock, Users } from 'lucide-react'
 import Image from 'next/image'
+import { ArrowRight } from 'lucide-react'
+import { useRouter } from 'next/navigation'
 
-const attractions = [
-  {
-    id: 1,
-    title: 'Ancient Temples',
-    description: 'Centuries-old temples showcasing Gujarati architecture and spiritual heritage.',
-    image: '/images/MatriMatajiTemple.jpg',
-    category: 'Culture',
-    visitors: '2.5K+',
-    hours: '6 AM - 8 PM',
-  },
-  {
-    id: 2,
-    title: 'Natural Springs',
-    description: 'Pristine natural water springs surrounded by lush hills and vegetation.',
-    image: '/images/tapkeshwar_waterfall.jpg',
-    category: 'Nature',
-    visitors: '3K+',
-    hours: '7 AM - 6 PM',
-  },
-  {
-    id: 3,
-    title: 'Cultural Villages',
-    description: 'Traditional villages preserving centuries of Gujarati culture and crafts.',
-    image: '/images/farm_view_from_top_of_Hill.jpg',
-    category: 'Community',
-    visitors: '1.8K+',
-    hours: 'Daylight Hours',
-  },
-  {
-    id: 4,
-    title: 'Scenic Viewpoint',
-    description: 'Panoramic views of the surrounding landscape and valley vistas.',
-    image: '/images/top_view.jpg',
-    category: 'Landscape',
-    visitors: '4K+',
-    hours: '5 AM - 9 PM',
-  },
-]
-
-const AttractionCard = ({ attraction, index }: { attraction: typeof attractions[0]; index: number }) => {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 40 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: false }}
-      transition={{ duration: 0.6, delay: index * 0.15 }}
-      whileHover={{ y: -8, transition: { duration: 0.3 } }}
-      className="group bg-card border border-border/20 rounded-xl overflow-hidden hover:border-accent/40 transition-all duration-300"
-    >
-      {/* Image Container */}
-      <div className="relative h-48 overflow-hidden">
-        <motion.div
-          className="w-full h-full"
-          whileHover={{ scale: 1.08 }}
-          transition={{ duration: 0.4 }}
-        >
-          <Image
-            src={attraction.image}
-            alt={attraction.title}
-            fill
-            className="object-cover"
-          />
-        </motion.div>
-        <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent" />
-        
-        {/* Category Badge */}
-        <div className="absolute top-4 right-4">
-          <motion.span
-            className="px-3 py-1 bg-accent/20 text-accent text-xs font-medium rounded-full border border-accent/40 backdrop-blur-sm"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ delay: 0.2 }}
-          >
-            {attraction.category}
-          </motion.span>
-        </div>
-      </div>
-
-      {/* Content */}
-      <div className="p-6">
-        <h3 className="text-xl font-bold text-white mb-2">{attraction.title}</h3>
-        <p className="text-muted text-sm mb-4 line-clamp-2">{attraction.description}</p>
-
-        {/* Info Grid */}
-        <div className="grid grid-cols-2 gap-3 mb-4">
-          <div className="flex items-center gap-2 text-sm">
-            <Clock size={16} className="text-accent" />
-            <span className="text-muted text-xs">{attraction.hours}</span>
-          </div>
-          <div className="flex items-center gap-2 text-sm">
-            <Users size={16} className="text-accent" />
-            <span className="text-muted text-xs">{attraction.visitors} visitors</span>
-          </div>
-        </div>
-
-        {/* Button */}
-        <motion.button
-          className="w-full px-4 py-2 bg-accent/10 text-accent rounded-lg text-sm font-medium hover:bg-accent/20 transition-colors border border-accent/30"
-          whileHover={{ scale: 1.02 }}
-          whileTap={{ scale: 0.98 }}
-        >
-          Learn More
-        </motion.button>
-      </div>
-    </motion.div>
-  )
+interface AttractionCard {
+  title: string
+  category: string
+  description: string
+  image: string
+  delay: number
 }
 
 export function Attractions() {
-  return (
-    <section id="attractions" className="relative py-20 sm:py-28 px-4 sm:px-6 lg:px-8 bg-background overflow-hidden">
-      {/* Decorative Background */}
-      <motion.div
-        className="absolute -right-40 top-20 w-80 h-80 bg-accent/5 rounded-full blur-3xl"
-        animate={{ x: [0, 30, 0] }}
-        transition={{ duration: 8, repeat: Infinity }}
-      />
+  const router = useRouter()
 
-      <div className="relative z-10 max-w-7xl mx-auto">
-        {/* Header */}
+  const attractions: AttractionCard[] = [
+    {
+      title: 'Ancient Temples',
+      category: 'Spiritual',
+      description: 'Four sacred temples steeped in mythology and devotion, each with unique spiritual significance',
+      image: '/images/bhimnath_mahadev_temple.jpg',
+      delay: 0,
+    },
+    {
+      title: 'Scenic Trekking Routes',
+      category: 'Adventure',
+      description: 'Challenging trails through lush greenery with panoramic views of the Rajkot landscape',
+      image: '/images/stairs_between_nature.jpg',
+      delay: 0.15,
+    },
+    {
+      title: 'Natural Beauty',
+      category: 'Nature',
+      description: 'Breathtaking vistas, seasonal waterfalls, and pristine natural landscapes throughout the year',
+      image: '/images/greenary_ground.jpg',
+      delay: 0.3,
+    },
+    {
+      title: 'Mahabharata Heritage',
+      category: 'History',
+      description: 'Walk the legendary paths where the Pandavas spent their exile during the epic times',
+      image: '/images/after_rain.jpg',
+      delay: 0.45,
+    },
+    {
+      title: 'Hill Entry Gate',
+      category: 'Landmark',
+      description: 'Impressive entrance featuring traditional architecture welcoming visitors to the sacred site',
+      image: '/images/HIll_Entry_Gate_2.jpg',
+      delay: 0.6,
+    },
+    {
+      title: 'Mahadev Statue',
+      category: 'Art',
+      description: 'Magnificent stone statue depicting the divine, an iconic landmark of Osam Hills',
+      image: '/images/In_Ground_Big_Mahadev_Statue.jpg',
+      delay: 0.75,
+    },
+  ]
+
+  const handleViewAll = () => {
+    router.push('/attractions')
+  }
+
+  return (
+    <section className="relative py-20 sm:py-28 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-background via-background/95 to-background">
+      <div className="max-w-7xl mx-auto">
+        {/* Section Header */}
         <motion.div
-          className="text-center mb-16"
+          className="flex flex-col md:flex-row md:items-end md:justify-between gap-8 mb-16"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: false }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.8 }}
         >
-          <span className="inline-block px-4 py-2 rounded-full bg-accent/10 border border-accent/30 text-accent text-sm font-medium mb-4">
-            Explore
-          </span>
-          <h2 className="text-4xl sm:text-5xl font-bold text-white mb-4">
-            Top Attractions
-          </h2>
-          <p className="text-muted max-w-2xl mx-auto">
-            Discover the most iconic destinations and experiences that make Osam Hills unforgettable.
-          </p>
+          <div>
+            <span className="inline-block px-4 py-2 rounded-full bg-accent/10 border border-accent/30 text-accent text-sm font-medium mb-4">
+              Top Attractions
+            </span>
+            <h2 className="text-4xl sm:text-5xl font-bold text-white mb-4">
+              Explore Osam Hills
+            </h2>
+            <p className="text-muted text-lg max-w-2xl">
+              Immerse yourself in the perfect blend of spirituality, nature, and adventure
+            </p>
+          </div>
+
+          <motion.button
+            onClick={handleViewAll}
+            className="group px-8 py-4 bg-accent text-background rounded-lg font-semibold hover:bg-accent/90 transition-colors cursor-pointer flex items-center gap-2 whitespace-nowrap"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.97 }}
+            title="View all attractions"
+          >
+            View All
+            <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+          </motion.button>
         </motion.div>
 
         {/* Attractions Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {attractions.map((attraction, index) => (
-            <AttractionCard key={attraction.id} attraction={attraction} index={index} />
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {attractions.map((attraction) => (
+            <motion.div
+              key={attraction.title}
+              className="group relative overflow-hidden rounded-2xl border border-border/20 bg-background/40 backdrop-blur-sm hover:border-accent/50 transition-all duration-300 cursor-pointer"
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: false }}
+              transition={{ delay: attraction.delay, duration: 0.6 }}
+              whileHover={{ y: -8, boxShadow: '0 20px 40px rgba(79, 209, 197, 0.1)' }}
+            >
+              {/* Image Container */}
+              <div className="relative h-56 overflow-hidden">
+                <Image
+                  src={attraction.image}
+                  alt={attraction.title}
+                  fill
+                  className="object-cover group-hover:scale-110 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent" />
+
+                {/* Category Badge */}
+                <div className="absolute top-4 right-4 inline-flex items-center px-3 py-1 rounded-full bg-accent/20 border border-accent/40 backdrop-blur-sm">
+                  <span className="text-accent text-xs font-semibold">{attraction.category}</span>
+                </div>
+              </div>
+
+              {/* Content */}
+              <div className="relative p-6 pb-8">
+                <h3 className="text-xl font-bold text-white mb-2 group-hover:text-accent transition-colors">
+                  {attraction.title}
+                </h3>
+                <p className="text-muted text-sm leading-relaxed mb-4">
+                  {attraction.description}
+                </p>
+
+                {/* Bottom Accent Line */}
+                <div className="absolute bottom-0 left-0 h-1 bg-gradient-to-r from-accent via-accent/60 to-transparent w-0 group-hover:w-full transition-all duration-300" />
+              </div>
+            </motion.div>
           ))}
         </div>
       </div>
