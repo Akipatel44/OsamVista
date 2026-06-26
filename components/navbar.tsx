@@ -33,80 +33,70 @@ export function Navbar() {
     <motion.nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
-          ? 'bg-background/90 backdrop-blur-md'
-          : 'bg-transparent'
+          ? 'bg-white/95 shadow-md backdrop-blur-md border-b border-gray-100'
+          : 'bg-white'
       }`}
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6 }}
+      transition={{ duration: 0.5 }}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Elegant border container */}
-        <div className={`rounded-2xl transition-all duration-300 ${
-          isScrolled
-            ? 'border border-amber-700/40 bg-black/30 backdrop-blur-sm'
-            : 'border border-amber-600/30 bg-transparent backdrop-blur-none'
-        }`}>
-          <div className="flex items-center justify-between px-6 py-4 sm:px-8 sm:py-5">
-            {/* Logo Section with Vertical Divider */}
-            <div className="flex items-center gap-4">
-              <motion.button
-                onClick={() => router.push('/')}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.2 }}
-                className="flex items-center gap-3 cursor-pointer hover:opacity-90 transition-opacity"
-                title="Go to home page"
-              >
-                <div className="relative w-10 sm:w-12">
-                  <Image
-                    src="/OsamHillsLogo.png"
-                    alt="Osam Hills Logo"
-                    width={674}
-                    height={188}
-                    priority
-                    className="h-auto w-full object-contain"
-                  />
-                </div>
-                <motion.span
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: 0.3 }}
-                  className="inline text-white font-bold text-sm sm:text-base whitespace-nowrap"
-                >
-                  Osam Hills
-                </motion.span>
-              </motion.button>
-
-              {/* Vertical Divider */}
-              <div className="hidden md:block w-px h-6 bg-gradient-to-b from-amber-600/40 to-amber-700/20" />
+        <div className="flex items-center justify-between h-16 sm:h-20">
+          {/* Logo Section */}
+          <motion.button
+            onClick={() => router.push('/')}
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.1 }}
+            className="flex items-center gap-2.5 sm:gap-3 cursor-pointer hover:opacity-80 transition-opacity flex-shrink-0"
+            title="Go to home page"
+          >
+            <div className="relative w-9 sm:w-11 h-9 sm:h-11 flex-shrink-0">
+              <Image
+                src="/OsamHillsLogo.png"
+                alt="Osam Hills Logo"
+                width={674}
+                height={188}
+                priority
+                className="h-full w-full object-contain"
+              />
             </div>
-
-            {/* Desktop Navigation */}
-            <div className="hidden md:flex items-center gap-8 flex-1 justify-center">
-              {navItems.map((item, i) => (
-                <motion.a
-                  key={item.href}
-                  href={item.href}
-                  className="text-xs sm:text-sm font-medium text-amber-600/90 hover:text-amber-500 transition-colors uppercase tracking-wider"
-                  initial={{ opacity: 0, y: -10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.3 + i * 0.08 }}
-                >
-                  {item.label}
-                </motion.a>
-              ))}
-            </div>
-
-            {/* CTA Button */}
-            <motion.a
-              href="/contact"
-              className="hidden sm:block px-5 sm:px-6 py-2 border border-amber-600/60 text-amber-600/90 rounded-lg font-medium hover:bg-amber-600/10 hover:border-amber-500/80 hover:text-amber-500 transition-all text-xs sm:text-sm uppercase tracking-wider"
+            <motion.span
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ delay: 0.5 }}
+              transition={{ delay: 0.2 }}
+              className="hidden sm:inline text-gray-900 font-bold text-sm sm:text-base"
+            >
+              Osam Hills
+            </motion.span>
+          </motion.button>
+
+          {/* Desktop Navigation */}
+          <div className="hidden lg:flex items-center gap-0.5 flex-1 justify-center">
+            {navItems.map((item, i) => (
+              <motion.a
+                key={item.href}
+                href={item.href}
+                className="px-4 py-2 text-gray-700 text-sm font-medium hover:text-amber-600 hover:bg-amber-50/50 rounded-md transition-all duration-200"
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.15 + i * 0.05 }}
+              >
+                {item.label}
+              </motion.a>
+            ))}
+          </div>
+
+          {/* CTA Button and Mobile Menu */}
+          <div className="flex items-center gap-3 sm:gap-4">
+            <motion.a
+              href="/contact"
+              className="hidden sm:block px-5 sm:px-6 py-2 bg-amber-600 text-white rounded-lg font-medium text-sm hover:bg-amber-700 transition-all duration-200 shadow-sm hover:shadow-md"
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.25 }}
               whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.97 }}
+              whileTap={{ scale: 0.95 }}
             >
               Contact Us
             </motion.a>
@@ -114,39 +104,44 @@ export function Navbar() {
             {/* Mobile Menu Button */}
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="md:hidden text-amber-600/90"
+              className="lg:hidden text-gray-900 p-2 hover:bg-gray-100 rounded-lg transition-colors"
+              aria-label="Toggle menu"
             >
-              {isOpen ? <X size={24} /> : <Menu size={24} />}
+              {isOpen ? <X size={24} strokeWidth={2} /> : <Menu size={24} strokeWidth={2} />}
             </button>
           </div>
+        </div>
 
-          {/* Mobile Menu */}
-          {isOpen && (
-            <motion.div
-              className="md:hidden pb-4 space-y-2 border-t border-amber-700/30 bg-black/40 backdrop-blur-sm px-6"
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: 'auto' }}
-              transition={{ duration: 0.3 }}
-            >
+        {/* Mobile Menu */}
+        {isOpen && (
+          <motion.div
+            className="lg:hidden border-t border-gray-100 bg-white"
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.2 }}
+          >
+            <div className="px-4 py-3 space-y-1">
               {navItems.map((item) => (
                 <a
                   key={item.href}
                   href={item.href}
-                  className="block px-3 py-2 text-sm font-medium text-amber-600/90 hover:text-amber-500 hover:bg-amber-600/5 rounded transition-colors uppercase tracking-wider"
+                  className="block px-3 py-2.5 text-gray-700 text-sm font-medium hover:text-amber-600 hover:bg-amber-50/50 rounded-md transition-colors"
                   onClick={() => setIsOpen(false)}
                 >
                   {item.label}
                 </a>
               ))}
-              <a 
-                href="/contact" 
-                className="block w-full mt-4 px-4 py-2 border border-amber-600/60 text-amber-600/90 rounded-lg font-medium hover:bg-amber-600/10 hover:border-amber-500/80 hover:text-amber-500 transition-all text-center uppercase tracking-wider text-sm"
+              <a
+                href="/contact"
+                className="block w-full px-4 py-2.5 mt-3 bg-amber-600 text-white rounded-lg font-medium text-sm hover:bg-amber-700 transition-all text-center"
+                onClick={() => setIsOpen(false)}
               >
                 Contact Us
               </a>
-            </motion.div>
-          )}
-        </div>
+            </div>
+          </motion.div>
+        )}
       </div>
     </motion.nav>
   )
