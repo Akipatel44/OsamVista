@@ -35,7 +35,7 @@ export function Highlights() {
       icon: <Calendar size={24} className="text-accent" />,
       title: 'Lok-Mela Festival',
       description: 'Annual celebration blending culture, spirituality, and community traditions',
-      image: '/images/summer_view.jpg',
+      image: '/images/Cricket_And_Mela_Groud_Under_Osam_HIlls.jpg',
     },
   ]
 

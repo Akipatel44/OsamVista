@@ -11,7 +11,7 @@ const attractions = [
   {
     title: 'Osam Hill Trek',
     description: 'Experience the thrilling trek up Osam Hill with winding stone steps and scenic viewpoints. The trail offers breathtaking panoramic views of the surrounding landscape and a sense of accomplishment at the hilltop.',
-    image: '/images/stairs_between_nature.jpg',
+    image: '/images/stairs_way_to_tapkeshwar.jpg',
     icon: Compass,
     duration: '1-2 hours',
     difficulty: 'Moderate',
@@ -19,7 +19,7 @@ const attractions = [
   {
     title: 'Matrimataji Lake',
     description: 'A serene natural water body at the foothills of Osam Hill. The lake is surrounded by lush greenery and is a perfect spot for peaceful contemplation and photography, especially during the monsoon season.',
-    image: '/images/tapkeshwar_waterfall.jpg',
+    image: '/images/lake_above_matrimataji_temple.jpg',
     icon: Droplet,
     duration: 'Leisure Activity',
     difficulty: 'Easy',
@@ -35,7 +35,7 @@ const attractions = [
   {
     title: 'Osam Waterfall',
     description: 'During monsoon season, a beautiful waterfall appears on Mount Osam, creating a refreshing and picturesque spot. The cascading water through natural rock formations is a sight to behold.',
-    image: '/images/stairs_between_monsoon.jpg',
+    image: '/images/Monsoon_Slow_WaterFlow.png',
     icon: Droplet,
     duration: '45 minutes',
     difficulty: 'Moderate',
