@@ -1,7 +1,7 @@
 'use client'
 
 import { motion, AnimatePresence } from 'framer-motion'
-import { useState } from 'react'
+import { useState, useMemo, useEffect, useRef } from 'react'
 import Image from 'next/image'
 import { Download, X } from 'lucide-react'
 
@@ -111,6 +111,65 @@ const galleryImages: GalleryImage[] = [
 ]
 
 const categories = ['All', 'Temples', 'Nature', 'Architecture', 'Landscape', 'Festivals', 'Culture']
+const PAGE_SIZE = 18
+
+// Gallery Card with skeleton
+function GalleryCard({ image, index, onClick }: { image: GalleryImage; index: number; onClick: () => void }) {
+  const [loaded, setLoaded] = useState(false)
+  const height = 400 + (index % 3) * 100
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, scale: 0.9 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ duration: 0.4, delay: Math.min(index % PAGE_SIZE, 8) * 0.05 }}
+      className="group relative mb-4 cursor-pointer break-inside-avoid overflow-hidden rounded-xl"
+      onClick={onClick}
+    >
+      {/* Skeleton overlay — fades out once image loads */}
+      <div
+        className={`absolute inset-0 z-10 rounded-xl bg-card transition-opacity duration-500 ${
+          loaded ? 'opacity-0 pointer-events-none' : 'opacity-100'
+        }`}
+      >
+        <div className="absolute inset-0 animate-pulse bg-gradient-to-br from-card via-white/5 to-card" />
+        <div className="absolute bottom-4 left-4 right-4 space-y-2">
+          <div className="h-3 w-2/3 rounded animate-pulse bg-white/10" />
+          <div className="h-2 w-1/3 rounded animate-pulse bg-white/5" />
+        </div>
+      </div>
+
+      <Image
+        src={image.src}
+        alt={image.title}
+        width={600}
+        height={height}
+        className={`w-full object-cover transition-all duration-500 group-hover:scale-110 ${
+          loaded ? 'opacity-100' : 'opacity-0'
+        }`}
+        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+        onLoad={() => setLoaded(true)}
+      />
+
+      {/* Hover gradient */}
+      <div className="absolute inset-0 flex items-end bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 transition-opacity group-hover:opacity-100 duration-300">
+        <div className="p-4 w-full">
+          <p className="text-sm font-medium text-white">{image.title}</p>
+          <p className="text-xs text-accent">{image.category}</p>
+        </div>
+      </div>
+
+      {/* Zoom icon */}
+      <div className="absolute inset-0 flex items-center justify-center opacity-0 transition-opacity group-hover:opacity-100 duration-300">
+        <div className="rounded-full bg-white/20 p-3 backdrop-blur-sm">
+          <svg className="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
+          </svg>
+        </div>
+      </div>
+    </motion.div>
+  )
+}
 
 // Lightbox Component
 function Lightbox({ image, isOpen, onClose }: { image: GalleryImage | null; isOpen: boolean; onClose: () => void }) {
@@ -173,11 +232,46 @@ function Lightbox({ image, isOpen, onClose }: { image: GalleryImage | null; isOp
 
 export function Gallery() {
   const [selectedCategory, setSelectedCategory] = useState('All')
+  const [visibleCount, setVisibleCount] = useState(PAGE_SIZE)
+  const [isLoading, setIsLoading] = useState(false)
   const [lightboxImage, setLightboxImage] = useState<GalleryImage | null>(null)
+  const sentinelRef = useRef<HTMLDivElement>(null)
 
-  const filteredImages = selectedCategory === 'All'
-    ? galleryImages
-    : galleryImages.filter(img => img.category === selectedCategory)
+  const filteredImages = useMemo(() =>
+    selectedCategory === 'All'
+      ? galleryImages
+      : galleryImages.filter(img => img.category === selectedCategory),
+    [selectedCategory]
+  )
+
+  const visibleImages = filteredImages.slice(0, visibleCount)
+  const hasMore = visibleCount < filteredImages.length
+
+  const handleCategoryChange = (category: string) => {
+    setSelectedCategory(category)
+    setVisibleCount(PAGE_SIZE)
+  }
+
+  useEffect(() => {
+    if (!sentinelRef.current) return
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const entry = entries[0]
+        if (entry.isIntersecting && hasMore && !isLoading) {
+          setIsLoading(true)
+          setTimeout(() => {
+            setVisibleCount(prev => prev + PAGE_SIZE)
+            setIsLoading(false)
+          }, 800)
+        }
+      },
+      { rootMargin: '200px' }
+    )
+
+    observer.observe(sentinelRef.current)
+    return () => observer.disconnect()
+  }, [hasMore, isLoading])
 
   return (
     <section id="gallery" className="relative py-20 sm:py-28 px-4 sm:px-6 lg:px-8 bg-background overflow-hidden">
@@ -219,7 +313,7 @@ export function Gallery() {
           {categories.map((category) => (
             <button
               key={category}
-              onClick={() => setSelectedCategory(category)}
+              onClick={() => handleCategoryChange(category)}
               className={`px-6 py-2 rounded-full font-medium transition-all duration-300 ${
                 selectedCategory === category
                   ? 'bg-accent text-background'
@@ -233,43 +327,32 @@ export function Gallery() {
 
         {/* Masonry Gallery Grid */}
         <div className="columns-1 gap-4 sm:columns-2 lg:columns-3">
-          {filteredImages.map((image, index) => (
-            <motion.div
+          {visibleImages.map((image, index) => (
+            <GalleryCard
               key={`${image.id}-${selectedCategory}`}
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.4, delay: index * 0.05 }}
-              className="group relative mb-4 cursor-pointer break-inside-avoid overflow-hidden rounded-xl"
+              image={image}
+              index={index}
               onClick={() => setLightboxImage(image)}
-            >
-              <Image
-                src={image.src}
-                alt={image.title}
-                width={600}
-                height={400 + (index % 3) * 100}
-                className="w-full object-cover transition-transform duration-500 group-hover:scale-110"
-                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-              />
-              
-              {/* Gradient Overlay on Hover */}
-              <div className="absolute inset-0 flex items-end bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 transition-opacity group-hover:opacity-100 duration-300">
-                <div className="p-4 w-full">
-                  <p className="text-sm font-medium text-white">{image.title}</p>
-                  <p className="text-xs text-accent">{image.category}</p>
-                </div>
-              </div>
-
-              {/* Zoom Icon on Hover */}
-              <div className="absolute inset-0 flex items-center justify-center opacity-0 transition-opacity group-hover:opacity-100 duration-300">
-                <div className="rounded-full bg-white/20 p-3 backdrop-blur-sm">
-                  <svg className="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
-                  </svg>
-                </div>
-              </div>
-            </motion.div>
+            />
           ))}
         </div>
+
+        {/* Infinite scroll sentinel + spinner */}
+        <div ref={sentinelRef} className="mt-12 flex justify-center items-center h-16">
+          {isLoading && (
+            <motion.div
+              className="w-10 h-10 rounded-full border-4 border-accent/20 border-t-accent"
+              animate={{ rotate: 360 }}
+              transition={{ duration: 0.8, repeat: Infinity, ease: 'linear' }}
+            />
+          )}
+        </div>
+
+        {!hasMore && filteredImages.length > PAGE_SIZE && (
+          <p className="text-center text-muted text-sm -mt-8">
+            All {filteredImages.length} photos loaded
+          </p>
+        )}
       </div>
 
       {/* Lightbox Modal */}
