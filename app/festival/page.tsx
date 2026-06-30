@@ -8,6 +8,7 @@ import { Users, Calendar, Music, Heart } from 'lucide-react'
 
 export default function FestivalPage() {
   const festivalDetails = [
+
     {
       icon: Calendar,
       title: 'When',
@@ -34,26 +35,32 @@ export default function FestivalPage() {
     {
       title: 'Temple Rituals',
       description: 'Participate in sacred ceremonies and prayers at Matrimataji Temple with devotees from across the region.',
+      image: '/images/Tapkeshwar_Temple.jpg',
     },
     {
       title: 'Pilgrimage Path',
       description: 'Walk the traditional pilgrimage route to the hilltop temples, experiencing the spiritual atmosphere.',
+      image: '/images/stairs_way_to_tapkeshwar.jpg',
     },
     {
       title: 'Community Meals',
       description: 'Share traditional Gujarati food with the community as part of the festival celebration.',
+      image: '/images/greenary_ground.jpg',
     },
     {
       title: 'Cultural Programs',
       description: 'Enjoy traditional music, dance, and cultural performances that showcase local heritage.',
+      image: '/images/Cricket_Pitch_UnderHills.jpg',
     },
     {
       title: 'Night Illumination',
       description: 'Witness the beautiful illumination of temples and surroundings during the evening celebrations.',
+      image: '/images/sunset.jpg',
     },
     {
       title: 'Darshan Queue',
       description: 'Experience the spiritual atmosphere as thousands gather for the sacred darshan of Matrimataji.',
+      image: '/images/from_below_view_of_matrimataji_temple.jpg',
     },
   ]
 
@@ -94,7 +101,7 @@ export default function FestivalPage() {
             transition={{ duration: 0.8 }}
           >
             <Image
-              src="/images/sunset_from_above.jpg"
+              src="/images/Cricket_And_Mela_Groud_Under_Osam_HIlls.jpg"
               alt="Lok-Mela Festival celebration with pilgrims"
               fill
               className="object-cover"
@@ -150,17 +157,28 @@ export default function FestivalPage() {
             {activities.map((activity, index) => (
               <motion.div
                 key={activity.title}
-                className="rounded-2xl border border-border/20 bg-background/40 p-8 hover:border-accent/40 transition-all duration-300 group hover:shadow-lg hover:shadow-accent/10"
+                className="group relative overflow-hidden rounded-2xl border border-border/20 hover:border-accent/40 transition-all duration-300 hover:shadow-lg hover:shadow-accent/10"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: false }}
                 transition={{ delay: index * 0.1 }}
+                whileHover={{ y: -4 }}
               >
-                <div className="w-12 h-12 rounded-full bg-accent/20 mb-4 group-hover:bg-accent/30 transition-colors" />
-                <h3 className="text-xl font-bold text-white mb-3 group-hover:text-accent transition-colors">
-                  {activity.title}
-                </h3>
-                <p className="text-muted leading-relaxed">{activity.description}</p>
+                <div className="relative h-48 overflow-hidden">
+                  <Image
+                    src={activity.image}
+                    alt={activity.title}
+                    fill
+                    className="object-cover group-hover:scale-110 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-transparent" />
+                </div>
+                <div className="p-6 bg-card/30">
+                  <h3 className="text-xl font-bold text-white mb-3 group-hover:text-accent transition-colors">
+                    {activity.title}
+                  </h3>
+                  <p className="text-muted leading-relaxed">{activity.description}</p>
+                </div>
               </motion.div>
             ))}
           </div>

@@ -31,8 +31,8 @@ export function Hero() {
         viewport={{ once: false }}
       >
         <Image
-          src="/images/from_above_view.jpg"
-          alt="Mountain landscape with morning mist"
+          src="/images/above_view_from_osam.jpg"
+          alt="Osam Hills aerial landscape"
           fill
           className="object-cover"
           priority

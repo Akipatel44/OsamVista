@@ -3,6 +3,7 @@
 import { Navbar } from '@/components/navbar'
 import { Footer } from '@/components/footer'
 import { motion } from 'framer-motion'
+import Image from 'next/image'
 import Link from 'next/link'
 import {
   Car,
@@ -99,6 +100,84 @@ export default function VisitorGuidePage() {
           >
             Everything you need to know to plan your visit to Osam Hills
           </motion.p>
+        </div>
+      </section>
+
+      {/* Scenic Banner */}
+      <section className="px-4 sm:px-6 lg:px-8 pb-4">
+        <div className="max-w-7xl mx-auto">
+          <motion.div
+            className="relative h-72 rounded-2xl overflow-hidden border border-border/20"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+          >
+            <Image
+              src="/images/Straigh_Way_With_Silence_and_peace.jpg"
+              alt="Peaceful walking path at Osam Hills"
+              fill
+              className="object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-background/70 via-background/30 to-transparent" />
+            <div className="absolute inset-0 flex items-center px-10">
+              <div>
+                <p className="text-accent text-sm font-medium mb-2 uppercase tracking-wider">Plan Your Visit</p>
+                <h2 className="text-3xl font-bold text-white max-w-sm leading-snug">
+                  Your Complete Guide to Osam Hills
+                </h2>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Seasons at Osam Hills */}
+      <section className="py-16 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
+          <motion.div
+            className="text-center mb-10"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: false }}
+          >
+            <span className="inline-block px-4 py-2 rounded-full bg-accent/10 border border-accent/30 text-accent text-sm font-medium mb-3">
+              When to Visit
+            </span>
+            <h2 className="text-3xl font-bold text-white">Osam Hills Through the Seasons</h2>
+          </motion.div>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            {[
+              { label: 'Winter', months: 'Oct – Feb', note: 'Best for trekking', image: '/images/winter_view.jpg' },
+              { label: 'Monsoon', months: 'Jul – Sep', note: 'Waterfalls & greenery', image: '/images/Monsoon_scenery.jpg' },
+              { label: 'Summer', months: 'Mar – Jun', note: 'Clear panoramic views', image: '/images/summer_view.jpg' },
+              { label: 'Festival', months: 'Shravan Amavashya', note: 'Lok-Mela pilgrimage', image: '/images/Cricket_And_Mela_Groud_Under_Osam_HIlls.jpg' },
+            ].map((season, index) => (
+              <motion.div
+                key={season.label}
+                className="group relative overflow-hidden rounded-2xl border border-border/20 hover:border-accent/40 transition-all duration-300"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: false }}
+                transition={{ delay: index * 0.1 }}
+                whileHover={{ y: -4 }}
+              >
+                <div className="relative h-44 overflow-hidden">
+                  <Image
+                    src={season.image}
+                    alt={`${season.label} at Osam Hills`}
+                    fill
+                    className="object-cover group-hover:scale-110 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent" />
+                </div>
+                <div className="p-4 bg-card/30">
+                  <h3 className="text-lg font-bold text-white">{season.label}</h3>
+                  <p className="text-accent text-sm font-medium">{season.months}</p>
+                  <p className="text-muted text-sm mt-1">{season.note}</p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </section>
 

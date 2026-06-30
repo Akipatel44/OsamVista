@@ -81,7 +81,7 @@ export function About() {
             </motion.button>
           </motion.div>
 
-          {/* Right Image */}
+          {/* Right Images */}
           <motion.div
             className="relative"
             initial={{ opacity: 0, x: 40 }}
@@ -91,13 +91,29 @@ export function About() {
           >
             <div className="relative h-96 rounded-2xl overflow-hidden border border-border/20">
               <Image
-                src="/images/bhimnath_mahadev_temple.jpg"
-                alt="Ancient Indian temple architecture"
+                src="/images/Osam_Hills_From_Ground.jpg"
+                alt="Osam Hills sacred landscape"
                 fill
                 className="object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-background/40 via-transparent to-transparent" />
             </div>
+
+            {/* Second overlapping image */}
+            <motion.div
+              className="absolute -bottom-6 -left-6 w-44 h-32 rounded-xl overflow-hidden border-2 border-card shadow-xl hidden lg:block"
+              initial={{ opacity: 0, scale: 0.8 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: false }}
+              transition={{ delay: 0.5 }}
+            >
+              <Image
+                src="/images/MatriMatajiTemple.jpg"
+                alt="Matrimataji Temple"
+                fill
+                className="object-cover"
+              />
+            </motion.div>
 
             {/* Floating Stats */}
             <motion.div
