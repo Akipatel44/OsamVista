@@ -1,12 +1,14 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Mail, Phone, MapPin, Facebook, Twitter, Instagram, Linkedin } from 'lucide-react'
+import { Mail, Phone, MapPin, Instagram } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
+import { useState } from 'react'
 
 export function Footer() {
   const currentYear = new Date().getFullYear()
+  const [showInstagramMenu, setShowInstagramMenu] = useState(false)
 
   const footerLinks = [
     {
@@ -47,11 +49,15 @@ export function Footer() {
     },
   ]
 
-  const socialLinks = [
-    { icon: Facebook, label: 'Facebook' },
-    { icon: Twitter, label: 'Twitter' },
-    { icon: Instagram, label: 'Instagram' },
-    { icon: Linkedin, label: 'LinkedIn' },
+  const instagramAccounts = [
+    {
+      name: 'Osam Hill Official',
+      url: 'https://www.instagram.com/osam.hill.official?igsh=MWk0aWloaXd0b3p3Ng==',
+    },
+    {
+      name: 'Matri Mataji Official',
+      url: 'https://www.instagram.com/matrimatajiofficial?igsh=MTZwNDl2cGl3ZDc0Mg==',
+    },
   ]
 
   return (
@@ -148,17 +154,20 @@ export function Footer() {
               </div>
             </div>
 
-            <Link href="/location">
-              <div className="flex items-center gap-4 cursor-pointer hover:opacity-80 transition-opacity">
-                <div className="w-10 h-10 rounded-lg bg-accent/20 border border-accent/40 flex items-center justify-center flex-shrink-0">
-                  <MapPin size={18} className="text-accent" />
-                </div>
-                <div>
-                  <p className="text-muted text-xs">Location</p>
-                  <p className="text-accent hover:text-accent/80 transition-colors text-sm font-medium">Patanvav, Rajkot, Gujarat</p>
-                </div>
+            <a
+              href="https://maps.app.goo.gl/Z8cywu9XobiNVMAE9"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-4 cursor-pointer hover:opacity-80 transition-opacity"
+            >
+              <div className="w-10 h-10 rounded-lg bg-accent/20 border border-accent/40 flex items-center justify-center flex-shrink-0">
+                <MapPin size={18} className="text-accent" />
               </div>
-            </Link>
+              <div>
+                <p className="text-muted text-xs">Location</p>
+                <p className="text-accent hover:text-accent/80 transition-colors text-sm font-medium">Patanvav, Rajkot, Gujarat</p>
+              </div>
+            </a>
           </motion.div>
 
           {/* Bottom Section */}
@@ -176,26 +185,48 @@ export function Footer() {
 
             {/* Social Links */}
             <motion.div
-              className="flex items-center gap-4"
+              className="flex items-center gap-4 relative"
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: false }}
               transition={{ delay: 0.6 }}
             >
-              {socialLinks.map((social) => {
-                const Icon = social.icon
-                return (
-                  <motion.a
-                    key={social.label}
-                    href="#"
-                    className="w-10 h-10 rounded-lg border border-border/20 flex items-center justify-center text-muted hover:text-accent hover:border-accent/40 transition-colors"
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.9 }}
+              <div className="relative">
+                <motion.button
+                  onClick={() => setShowInstagramMenu(!showInstagramMenu)}
+                  className="w-10 h-10 rounded-lg border border-border/20 flex items-center justify-center text-muted hover:text-accent hover:border-accent/40 transition-colors"
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.9 }}
+                  aria-label="Instagram"
+                  aria-expanded={showInstagramMenu}
+                >
+                  <Instagram size={18} />
+                </motion.button>
+
+                {/* Instagram Menu */}
+                {showInstagramMenu && (
+                  <motion.div
+                    className="absolute bottom-full right-0 mb-2 bg-background border border-border/30 rounded-lg shadow-lg overflow-hidden z-50 min-w-max"
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 10 }}
+                    transition={{ duration: 0.2 }}
                   >
-                    <Icon size={18} />
-                  </motion.a>
-                )
-              })}
+                    {instagramAccounts.map((account) => (
+                      <a
+                        key={account.name}
+                        href={account.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={() => setShowInstagramMenu(false)}
+                        className="block px-4 py-3 text-sm text-muted hover:text-accent hover:bg-accent/10 transition-colors first:border-t-0 border-t border-border/10"
+                      >
+                        {account.name}
+                      </a>
+                    ))}
+                  </motion.div>
+                )}
+              </div>
             </motion.div>
 
             {/* Links */}
